@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  BASE_PATH: /tractor-store
+  BASE_PATH: /angular-examples
 
 jobs:
   build-and-deploy:
@@ -97,47 +97,11 @@ jobs:
             mv "_site/$app/env.config.json.tmp" "_site/$app/env.config.json"
           done
 
-      - name: Write root redirect (/) -> /tractor-store/
-        run: |
-          cat > _site/_root_index.html <<'HTML'
-          <!DOCTYPE html>
-          <html lang="en">
-            <head>
-              <meta charset="utf-8">
-              <title>Native Federation Angular Examples</title>
-              <meta http-equiv="refresh" content="0; url=/tractor-store/">
-              <link rel="canonical" href="/tractor-store/">
-            </head>
-            <body>
-              <p>Redirecting to <a href="/tractor-store/">/tractor-store/</a>&hellip;</p>
-              <script>location.replace('/tractor-store/');</script>
-            </body>
-          </html>
-          HTML
-
       - name: Publish to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: tractor-store/_site
           publish_branch: gh-pages
-          destination_dir: tractor-store
-          keep_files: true
-          cname: examples.native-federation.com
+          force_orphan: true
           commit_message: 'deploy tractor-store: ${{ github.sha }}'
-
-      - name: Stage root redirect files
-        run: |
-          mkdir -p _root
-          cp _site/_root_index.html _root/index.html
-          cp _site/_root_index.html _root/404.html
-
-      - name: Publish root redirect to gh-pages root
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: tractor-store/_root
-          publish_branch: gh-pages
-          keep_files: true
-          cname: examples.native-federation.com
-          commit_message: 'deploy root redirect: ${{ github.sha }}'
