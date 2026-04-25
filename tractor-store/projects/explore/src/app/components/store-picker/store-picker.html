@@ -2,21 +2,19 @@
   <div class="e_StorePicker_control" data-boundary="explore">
     @if (selected(); as s) {
       <div class="e_StorePicker_selected">
-        <div class="e_StorePicker_content">
-          <img
-            class="e_StorePicker_image"
-            [src]="imageMeta(s.image).src"
-            [srcset]="imageMeta(s.image).srcset"
-            width="200"
-            height="200"
-            alt=""
-          />
-          <p class="e_StorePicker_address">
-            {{ s.name }}<br />
-            {{ s.street }}<br />
-            {{ s.city }}
-          </p>
-        </div>
+        <img
+          class="e_StorePicker_image"
+          [src]="imageMeta(s.image).src"
+          [srcset]="imageMeta(s.image).srcset"
+          width="200"
+          height="200"
+          alt=""
+        />
+        <p class="e_StorePicker_address">
+          {{ s.name }}<br />
+          {{ s.street }}<br />
+          {{ s.city }}
+        </p>
       </div>
     }
     <ts-button

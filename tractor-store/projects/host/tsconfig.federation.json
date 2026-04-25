@@ -6,6 +6,7 @@
   },
   "files": [],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "../../libs/shared/ui/src/public-api.ts"
   ]
 }

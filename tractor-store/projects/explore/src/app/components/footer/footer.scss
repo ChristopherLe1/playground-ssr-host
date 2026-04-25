@@ -73,3 +73,11 @@
 .e_Footer__credits h3 { margin: 0; font-size: 1em; font-weight: normal; color: #ff5a55; }
 .e_Footer__credits p { margin: 0 0 1rem; }
 .e_Footer__credits img { display: inline-block; width: 15px; }
+
+.e_Footer__buildBy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+.e_Footer__buildBy img { width: 25px; height: 25px; }
