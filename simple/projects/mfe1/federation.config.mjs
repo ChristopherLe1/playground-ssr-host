@@ -1,14 +1,18 @@
 import {withNativeFederation, shareAll} from '@angular-architects/native-federation-v4/config';
 
 export default withNativeFederation({
-  name: "host",
+
+  name: 'team/mfe1',
+  exposes: {
+    './Component': './projects/mfe1/src/bootstrap.ts',
+  },
   shared: {
     ...shareAll(
-      { singleton: true, strictVersion: true, requiredVersion: 'auto', build: 'package' },
+      { singleton: true, strictVersion: true, requiredVersion: 'auto' },
       {
         overrides: {
-          '@angular/core': { singleton: true, strictVersion: true, requiredVersion: 'auto', build: 'package',  includeSecondaries: {keepAll: true}},
-
+          // the includeSecondaries is an opt-out of 'ignoreUnusedDeps' So all of @angular/core is shared to prevent mismatches
+          '@angular/core': { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: {keepAll: true}},
         }
       }
     ),
@@ -22,7 +26,6 @@ export default withNativeFederation({
   ],
 
   features: { 
-    mappingVersion: true,
     ignoreUnusedDeps: true, // by default now
     denseChunking: true
   }

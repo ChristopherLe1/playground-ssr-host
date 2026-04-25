@@ -1,7 +1,16 @@
 import {withNativeFederation, shareAll} from '@angular-architects/native-federation-v4/config';
 
 export default withNativeFederation({
-  name: "host",
+
+  name: 'mfe4',
+
+  exposes: {
+    './Component': './projects/mfe4/src/app/app.component.ts',
+    './Bootstrap': './projects/mfe4/src/bootstrap.ts',
+  },
+
+  // Ensures scoping of all dependencies on different "ng20" scope. 
+  shareScope: "ng20",
   shared: {
     ...shareAll(
       { singleton: true, strictVersion: true, requiredVersion: 'auto', build: 'package' },
@@ -22,7 +31,6 @@ export default withNativeFederation({
   ],
 
   features: { 
-    mappingVersion: true,
     ignoreUnusedDeps: true, // by default now
     denseChunking: true
   }

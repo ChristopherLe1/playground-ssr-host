@@ -22,7 +22,6 @@ export default withNativeFederation({
   ],
 
   features: { 
-    mappingVersion: true,
     ignoreUnusedDeps: true, // by default now
     denseChunking: true
   }

@@ -24,6 +24,7 @@ export default withNativeFederation({
   ],
 
   features: {
+    mappingVersion: true,
     denseChunking: true
   }
 });
