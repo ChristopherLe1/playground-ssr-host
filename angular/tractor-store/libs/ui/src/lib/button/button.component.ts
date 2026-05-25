@@ -2,6 +2,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  ViewEncapsulation,
   computed,
   input,
 } from '@angular/core';
@@ -16,6 +17,7 @@ export type ButtonSize = 'small' | 'normal';
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ButtonComponent {
   readonly type = input<'button' | 'submit' | 'reset' | null>(null);

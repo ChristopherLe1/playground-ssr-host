@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+  input,
+} from '@angular/core';
 
 @Component({
   selector: 'ts-spinner',
@@ -10,6 +15,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   `,
   styleUrl: './spinner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class SpinnerComponent {
   readonly label = input<string>('Loading…');

@@ -3,6 +3,7 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   DestroyRef,
+  ViewEncapsulation,
   inject,
   signal,
 } from '@angular/core';
@@ -19,6 +20,7 @@ import { LOADER } from '../../core/remote-loader';
   templateUrl: './checkout.page.html',
   styleUrl: './checkout.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   host: { 'data-boundary-page': 'checkout' },
 })

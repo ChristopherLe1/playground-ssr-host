@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ViewEncapsulation,
   computed,
   inject,
   input,
@@ -11,6 +12,7 @@ import { ResourceService } from '../../utils/resource.service';
 @Component({
   selector: 'app-store-tile',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   template: `
     <li class="e_Store">
       <div class="e_Store_content">

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ViewEncapsulation,
   computed,
   inject,
   input,
@@ -14,6 +15,7 @@ import { fmtPrice } from '../../utils/price';
   selector: 'app-product-tile',
   imports: [NavigateToDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   styleUrl: './product-tile.scss',
   template: `
     <li class="e_Product">

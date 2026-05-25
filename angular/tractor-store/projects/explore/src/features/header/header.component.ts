@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  ViewEncapsulation,
   inject,
 } from '@angular/core';
 import { NavigateToDirective } from '@internal/events';
@@ -15,6 +16,7 @@ import { LOADER } from '../../core/remote-loader';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HeaderComponent {

@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { NavigateToDirective } from '@internal/events';
 
 @Component({
   selector: 'app-navigation',
   imports: [NavigateToDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   template: `
     <nav class="e_Navigation">
       <ul class="e_Navigation__list">

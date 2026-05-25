@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ViewEncapsulation,
   computed,
   inject,
   input,
@@ -26,6 +27,7 @@ export interface LineItemView {
   templateUrl: './line-item.html',
   styleUrl: './line-item.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   host: { class: 'c_LineItem', role: 'listitem' },
 })
 export class LineItemComponent {

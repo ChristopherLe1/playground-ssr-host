@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ViewEncapsulation,
   effect,
   inject,
   signal,
@@ -14,6 +15,7 @@ import { CartStore } from '../../core/data/store/cart-store';
   templateUrl: './mini-cart.component.html',
   styleUrl: './mini-cart.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   host: {
     'data-boundary': 'checkout',
     class: 'c_MiniCart',

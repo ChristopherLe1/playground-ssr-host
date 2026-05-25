@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ViewEncapsulation,
   computed,
   inject,
   input,
@@ -17,6 +18,7 @@ import { CartStore } from '../../core/data/store/cart-store';
   templateUrl: './add-to-cart.component.html',
   styleUrl: './add-to-cart.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   host: { 'data-boundary': 'checkout' },
 })
 export class AddToCartComponent {

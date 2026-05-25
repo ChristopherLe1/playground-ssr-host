@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+  computed,
+  input,
+} from '@angular/core';
 import { NavigateToDirective } from '@internal/events';
 
 @Component({
@@ -16,6 +22,7 @@ import { NavigateToDirective } from '@internal/events';
   `,
   styleUrl: './variant-option.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class VariantOption {
   readonly id = input.required<string>();

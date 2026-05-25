@@ -1,0 +1,23 @@
+{
+  "name": "@tractor-store/host",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node build.mjs --dev",
+    "preview": "node build.mjs --preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@internal/event-bus": "workspace:*",
+    "@internal/federation": "workspace:*",
+    "@internal/navigation": "workspace:*",
+    "@internal/ui": "workspace:*",
+    "@internal/url": "workspace:*",
+    "@softarc/native-federation-orchestrator": "^4.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  }
+}

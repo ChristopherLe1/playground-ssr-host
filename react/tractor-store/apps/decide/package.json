@@ -1,0 +1,22 @@
+{
+  "name": "@tractor-store/decide",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node build.mjs --dev",
+    "preview": "node build.mjs --preview"
+  },
+  "dependencies": {
+    "@internal/event-bus": "workspace:*",
+    "@internal/federation": "workspace:*",
+    "@internal/mfe-runtime": "workspace:*",
+    "@internal/navigation": "workspace:*",
+    "@internal/ui": "workspace:*",
+    "@internal/url": "workspace:*",
+    "@softarc/native-federation-orchestrator": "^4.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

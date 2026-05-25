@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  ViewEncapsulation,
   computed,
   inject,
   input,
@@ -18,6 +19,7 @@ import { LOADER } from '../../core/remote-loader';
   templateUrl: './product.page.html',
   styleUrl: './product.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   host: {
     'data-boundary-page': 'decide',

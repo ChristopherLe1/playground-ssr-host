@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+  inject,
+} from '@angular/core';
 import { NavigateToDirective } from '@internal/events';
 import { ResourceService } from '../../utils/resource.service';
 
@@ -18,6 +23,7 @@ import { ResourceService } from '../../utils/resource.service';
   `,
   styleUrl: './compact-header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   host: { class: 'c_CompactHeader', role: 'banner' },
 })
 export class CompactHeaderComponent {

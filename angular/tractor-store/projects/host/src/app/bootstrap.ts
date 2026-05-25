@@ -28,11 +28,19 @@ const loadHelperScript = (cdnUrl: string): void => {
   document.head.appendChild(script);
 };
 
+const loadGlobalStylesheet = (cdnUrl: string): void => {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = toCdnUrl('/cdn/css/global.css', cdnUrl);
+  document.head.appendChild(link);
+};
+
 export const bootstrap = (
   nf: NativeFederationResult,
   env: EnvironmentConfig,
   manifest: FederationManifest,
 ) => {
+  loadGlobalStylesheet(env.cdnUrl);
   loadRalewayFont(env.cdnUrl);
   loadHelperScript(env.cdnUrl);
   bootstrapApplication(App, appConfig(nf, env, manifest)).catch((err) =>

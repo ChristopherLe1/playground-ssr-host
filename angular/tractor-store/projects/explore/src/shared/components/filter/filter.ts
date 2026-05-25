@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+  input,
+} from '@angular/core';
 import { NavigateToDirective, NavTarget } from '@internal/events';
 
 export interface FilterItem {
@@ -11,6 +16,7 @@ export interface FilterItem {
   selector: 'app-filter',
   imports: [NavigateToDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   styleUrl: './filter.scss',
   template: `
     <div class="e_Filter">

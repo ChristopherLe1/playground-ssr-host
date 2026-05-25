@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ResourceService } from '../../shared/utils/resource.service';
 
 @Component({
@@ -6,6 +11,7 @@ import { ResourceService } from '../../shared/utils/resource.service';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class FooterComponent {
   private readonly image = inject(ResourceService);

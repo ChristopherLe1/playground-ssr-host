@@ -3,6 +3,7 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   PLATFORM_ID,
+  ViewEncapsulation,
   afterNextRender,
   inject,
 } from '@angular/core';
@@ -18,6 +19,7 @@ type ConfettiFn = (options: Record<string, unknown>) => void;
   templateUrl: './thanks.page.html',
   styleUrl: './thanks.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   host: { 'data-boundary-page': 'checkout' },
 })

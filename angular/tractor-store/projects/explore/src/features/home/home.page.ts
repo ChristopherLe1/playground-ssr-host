@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
+  ViewEncapsulation,
   computed,
   inject,
 } from '@angular/core';
@@ -16,6 +17,7 @@ import { LOADER } from '../../core/remote-loader';
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   host: { 'data-boundary-page': 'explore' },
 })

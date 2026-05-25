@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  ViewEncapsulation,
   computed,
   inject,
   signal,
@@ -24,6 +25,7 @@ interface StoreView extends StoreModel {
   templateUrl: './store-picker.component.html',
   styleUrl: './store-picker.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class StorePickerComponent {
   private readonly storeHttp = inject(StoreHttp);

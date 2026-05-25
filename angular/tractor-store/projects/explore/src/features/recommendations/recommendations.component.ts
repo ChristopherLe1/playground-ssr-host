@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ViewEncapsulation,
   computed,
   inject,
   input,
@@ -25,6 +26,7 @@ function parseSkus(v: unknown): string[] {
   templateUrl: './recommendations.component.html',
   styleUrl: './recommendations.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class RecommendationsComponent {
   private readonly http = inject(RecommendationHttp);

@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": [
+    "src",
+    "src/global.d.ts",
+    "../../libs/navigation/src/types/jsx-mfe.d.ts"
+  ]
+}

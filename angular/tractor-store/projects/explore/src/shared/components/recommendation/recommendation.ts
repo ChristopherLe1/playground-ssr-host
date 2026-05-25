@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ViewEncapsulation,
   computed,
   inject,
   input,
@@ -13,6 +14,7 @@ import { ResourceService } from '../../utils/resource.service';
   selector: 'app-recommendation',
   imports: [NavigateToDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.ShadowDom,
   styleUrl: './recommendation.scss',
   template: `
     <li class="e_Recommendation">
