@@ -26,7 +26,7 @@ describe('HeaderComponent', () => {
   it('renders the cdn-prefixed logo', () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     fixture.detectChanges();
-    const img = fixture.nativeElement.querySelector(
+    const img = (fixture.nativeElement as HTMLElement).shadowRoot!.querySelector(
       '.e_Header__logo',
     ) as HTMLImageElement;
     expect(img.getAttribute('src')).toBe('http://cdn.test/cdn/img/logo.svg');
@@ -36,7 +36,7 @@ describe('HeaderComponent', () => {
   it('embeds the navigation and mini-cart slices', () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     fixture.detectChanges();
-    const el: HTMLElement = fixture.nativeElement;
+    const el: ShadowRoot = (fixture.nativeElement as HTMLElement).shadowRoot!;
     expect(el.querySelector('app-navigation')).not.toBeNull();
     expect(el.querySelector('mfe-mini-cart')).not.toBeNull();
   });
@@ -45,9 +45,9 @@ describe('HeaderComponent', () => {
     const fixture = TestBed.createComponent(HeaderComponent);
     fixture.detectChanges();
     expect(
-      fixture.nativeElement.querySelector('header')?.getAttribute(
-        'data-boundary',
-      ),
+      (fixture.nativeElement as HTMLElement).shadowRoot!
+        .querySelector('header')
+        ?.getAttribute('data-boundary'),
     ).toBe('explore');
   });
 

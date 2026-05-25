@@ -1,6 +1,6 @@
 import { NavPayload } from './nav-payload';
 
-const PARAM_RE = /^:([a-zA-Z_$][\w$]*)$/;
+const PARAM_RE = /^\{([a-zA-Z_$][\w$]*)\}$/;
 
 const trimSlashes = (s: string): string => s.replace(/^\/+|\/+$/g, '');
 
@@ -12,7 +12,14 @@ export const joinPath = (basePath: string, intentPath: string): string => {
 };
 
 export const toRoutePath = (basePath: string, intentPath: string): string =>
-  joinPath(basePath, intentPath).replace(/^\/+/, '');
+  joinPath(basePath, intentPath)
+    .replace(/^\/+/, '')
+    .split('/')
+    .map((seg) => {
+      const m = PARAM_RE.exec(seg);
+      return m ? `:${m[1]}` : seg;
+    })
+    .join('/');
 
 export const splitIntentParams = (intentPath: string): readonly string[] => {
   return intentPath
@@ -33,7 +40,7 @@ export const resolveTemplate = (
       const value = payload[m[1]];
       if (value == null) {
         throw new Error(
-          `[nav] missing required param ":${m[1]}" for path "${template}"`,
+          `[nav] missing required param "{${m[1]}}" for path "${template}"`,
         );
       }
       return encodeURIComponent(value);

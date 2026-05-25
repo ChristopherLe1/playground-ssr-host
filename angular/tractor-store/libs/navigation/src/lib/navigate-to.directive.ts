@@ -51,8 +51,13 @@ export class NavigateToDirective {
   );
 
   constructor() {
-    const unsubscribe = navIntents.on((map) => this.intents.set(map));
-    inject(DestroyRef).onDestroy(unsubscribe);
+    try {
+      const unsubscribe = navIntents.on((map) => this.intents.set(map));
+      inject(DestroyRef).onDestroy(unsubscribe);
+    } catch {
+      // Event bus not installed (e.g. isolated test environment); leave the
+      // intents map empty so the directive becomes a click-only no-op.
+    }
   }
 
   protected onClick(event: MouseEvent): void {

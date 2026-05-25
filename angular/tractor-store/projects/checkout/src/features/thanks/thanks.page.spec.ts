@@ -15,7 +15,8 @@ describe('ThanksPage', () => {
     const fixture = TestBed.createComponent(ThanksPage);
     fixture.detectChanges();
     expect(fixture.componentInstance).toBeTruthy();
-    const text = fixture.nativeElement.textContent as string;
+    const text = (fixture.nativeElement as HTMLElement).shadowRoot!
+      .textContent as string;
     expect(text).toContain('Thanks for your order');
   });
 });

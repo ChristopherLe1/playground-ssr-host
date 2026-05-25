@@ -15,7 +15,7 @@ describe('FooterComponent', () => {
   it('renders the cdn-prefixed neuland logo with descriptive alt text', () => {
     const fixture = TestBed.createComponent(FooterComponent);
     fixture.detectChanges();
-    const img = fixture.nativeElement.querySelector(
+    const img = (fixture.nativeElement as HTMLElement).shadowRoot!.querySelector(
       '.e_Footer__initiative img',
     ) as HTMLImageElement;
     expect(img.getAttribute('src')).toBe(
@@ -28,9 +28,9 @@ describe('FooterComponent', () => {
     const fixture = TestBed.createComponent(FooterComponent);
     fixture.detectChanges();
     expect(
-      fixture.nativeElement.querySelector('footer')?.getAttribute(
-        'data-boundary',
-      ),
+      (fixture.nativeElement as HTMLElement).shadowRoot!
+        .querySelector('footer')
+        ?.getAttribute('data-boundary'),
     ).toBe('explore');
   });
 
@@ -38,7 +38,7 @@ describe('FooterComponent', () => {
     const fixture = TestBed.createComponent(FooterComponent);
     fixture.detectChanges();
     const hrefs = Array.from<HTMLAnchorElement>(
-      fixture.nativeElement.querySelectorAll('a'),
+      (fixture.nativeElement as HTMLElement).shadowRoot!.querySelectorAll('a'),
     ).map((a) => a.getAttribute('href'));
     expect(hrefs).toContain('https://micro-frontends.org/tractor-store/');
     expect(hrefs).toContain('https://neuland-bfi.de');

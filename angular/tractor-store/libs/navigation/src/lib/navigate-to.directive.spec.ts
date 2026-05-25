@@ -2,7 +2,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { NavigateToDirective } from './navigate-to.directive';
-import type { NavigatePayload } from '@ng-internal/event-bus';
+import type { NavIntentMap, NavigatePayload } from '@ng-internal/event-bus';
+
+const testIntents: NavIntentMap = new Map([
+  ['explore.home', { basePath: 'explore', path: '/' }],
+  ['decide.product', { basePath: 'decide', path: '/product/{id}' }],
+  ['checkout.cart', { basePath: 'checkout', path: '/cart' }],
+]);
 
 type Handler = (event: { data: unknown; timestamp: number }) => void;
 
@@ -28,9 +34,9 @@ const fakeRegistry = () => {
 @Component({
   imports: [NavigateToDirective],
   template: `
-    <a [navigateTo]="'explore.home'"></a>
-    <a [navigateTo]="'decide.product'" [navParams]="{ id: 'CL-01' }"></a>
-    <button [navigateTo]="'checkout.cart'"></button>
+    <a [appNavigateTo]="'explore.home'"></a>
+    <a [appNavigateTo]="'decide.product'" [navPayload]="{ id: 'CL-01' }"></a>
+    <button [appNavigateTo]="'checkout.cart'"></button>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -54,6 +60,8 @@ describe('NavigateToDirective', () => {
   function render() {
     TestBed.configureTestingModule({ imports: [HostComponent] });
     const fixture = TestBed.createComponent(HostComponent);
+    fixture.detectChanges();
+    bus.emit('nav:intents', testIntents);
     fixture.detectChanges();
     return fixture;
   }

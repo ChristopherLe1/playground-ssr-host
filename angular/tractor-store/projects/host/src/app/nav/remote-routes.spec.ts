@@ -60,7 +60,7 @@ describe('buildRemoteRoutes', () => {
         source: '@x/decide',
         basePath: 'decide',
         intents: [
-          { id: 'decide.product', path: '/product/:id', element: 'mfe-p' },
+          { id: 'decide.product', path: '/product/{id}', element: 'mfe-p' },
           // link-only intent — no element
           { id: 'decide.link-only', path: '/external' },
         ],

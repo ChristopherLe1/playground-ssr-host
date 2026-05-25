@@ -61,7 +61,7 @@ describe('LineItemComponent', () => {
 
   describe('template rendering', () => {
     it('renders the variant name, sku, quantity and total', () => {
-      const el: HTMLElement = create().nativeElement;
+      const el: ShadowRoot = (create().nativeElement as HTMLElement).shadowRoot!;
       expect(el.querySelector('.c_LineItem__name')?.textContent).toContain(
         'FutureHarvest Navigator Scarlet Dynamo',
       );
@@ -77,7 +77,7 @@ describe('LineItemComponent', () => {
     });
 
     it('renders the product image with src, srcset and alt', () => {
-      const img = create().nativeElement.querySelector(
+      const img = (create().nativeElement as HTMLElement).shadowRoot!.querySelector(
         'img',
       ) as HTMLImageElement;
       expect(img.getAttribute('src')).toBe(
@@ -144,8 +144,9 @@ describe('LineItemComponent', () => {
         sku: 'CL-01-GR',
       });
       expect(
-        (fixture.nativeElement.querySelector('img') as HTMLImageElement)
-          .getAttribute('src'),
+        ((fixture.nativeElement as HTMLElement).shadowRoot!.querySelector(
+          'img',
+        ) as HTMLImageElement).getAttribute('src'),
       ).toBe('http://cdn.test/cdn/img/product/200/CL-01-GR.webp');
     });
   });

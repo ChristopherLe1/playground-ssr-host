@@ -42,7 +42,8 @@ describe('VariantOption', () => {
   }
 
   it('renders a navigable link with the variant name when not selected', () => {
-    const el: HTMLElement = create({ selected: false }).nativeElement;
+    const el: ShadowRoot = (create({ selected: false }).nativeElement as HTMLElement)
+      .shadowRoot!;
     const link = el.querySelector('a');
     expect(link).toBeTruthy();
     expect(el.querySelector('strong')).toBeFalsy();
@@ -50,7 +51,8 @@ describe('VariantOption', () => {
   });
 
   it('renders a strong tag (no link) when selected', () => {
-    const el: HTMLElement = create({ selected: true }).nativeElement;
+    const el: ShadowRoot = (create({ selected: true }).nativeElement as HTMLElement)
+      .shadowRoot!;
     expect(el.querySelector('strong')?.textContent).toContain('Scarlet Dynamo');
     expect(el.querySelector('a')).toBeFalsy();
   });
@@ -64,12 +66,16 @@ describe('VariantOption', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.selected()).toBe(false);
-    expect(fixture.nativeElement.querySelector('a')).toBeTruthy();
+    expect(
+      (fixture.nativeElement as HTMLElement).shadowRoot!.querySelector('a'),
+    ).toBeTruthy();
   });
 
   it('exposes the color through the --variant-color custom property', () => {
     const fixture = create({ color: '#123456' });
-    const li = fixture.nativeElement.querySelector('li') as HTMLElement;
+    const li = (fixture.nativeElement as HTMLElement).shadowRoot!.querySelector(
+      'li',
+    ) as HTMLElement;
     expect(li.style.getPropertyValue('--variant-color')).toBe('#123456');
   });
 

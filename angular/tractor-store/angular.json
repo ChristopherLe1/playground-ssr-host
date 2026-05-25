@@ -289,7 +289,10 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "buildTarget": "decide:esbuild:development"
+            "buildTarget": "decide:esbuild:development",
+            "setupFiles": [
+              "libs/event-bus/src/testing/install-registry-stub.ts"
+            ]
           }
         },
         "esbuild": {

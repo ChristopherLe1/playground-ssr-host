@@ -30,7 +30,7 @@ describe('HomePage', () => {
   it('renders one link per teaser with title and cdn-prefixed image', () => {
     const fixture = TestBed.createComponent(HomePage);
     fixture.detectChanges();
-    const links = fixture.nativeElement.querySelectorAll(
+    const links = (fixture.nativeElement as HTMLElement).shadowRoot!.querySelectorAll(
       '.e_HomePage__categoryLink',
     );
     expect(links.length).toBe(2);
@@ -61,8 +61,9 @@ describe('HomePage', () => {
     const fixture = TestBed.createComponent(HomePage);
     fixture.detectChanges();
     expect(
-      fixture.nativeElement.querySelectorAll('.e_HomePage__categoryLink')
-        .length,
+      (fixture.nativeElement as HTMLElement).shadowRoot!.querySelectorAll(
+        '.e_HomePage__categoryLink',
+      ).length,
     ).toBe(0);
   });
 
@@ -79,7 +80,7 @@ describe('HomePage', () => {
   it('embeds the header, footer and recommendations custom elements', () => {
     const fixture = TestBed.createComponent(HomePage);
     fixture.detectChanges();
-    const el: HTMLElement = fixture.nativeElement;
+    const el: ShadowRoot = (fixture.nativeElement as HTMLElement).shadowRoot!;
     expect(el.querySelector('mfe-header')).not.toBeNull();
     expect(el.querySelector('mfe-footer')).not.toBeNull();
     expect(el.querySelector('mfe-recommendations')).not.toBeNull();
@@ -88,7 +89,7 @@ describe('HomePage', () => {
   it('passes the configured seed skus to the recommendations slice', () => {
     const fixture = TestBed.createComponent(HomePage);
     fixture.detectChanges();
-    const reco = fixture.nativeElement.querySelector(
+    const reco = (fixture.nativeElement as HTMLElement).shadowRoot!.querySelector(
       'mfe-recommendations',
     ) as HTMLElement;
     expect((reco as unknown as { skus: string[] }).skus).toEqual([

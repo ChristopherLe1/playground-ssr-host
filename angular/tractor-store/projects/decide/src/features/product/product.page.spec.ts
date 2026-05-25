@@ -139,7 +139,8 @@ describe('ProductPage', () => {
 
   describe('template rendering', () => {
     it('renders the product details when a product is found', () => {
-      const el: HTMLElement = create({ id: 'CL-01' }).nativeElement;
+      const el: ShadowRoot = (create({ id: 'CL-01' }).nativeElement as HTMLElement)
+        .shadowRoot!;
       expect(el.querySelector('.d_ProductPage__title')?.textContent).toContain(
         'Heritage Workhorse',
       );
@@ -150,15 +151,16 @@ describe('ProductPage', () => {
     });
 
     it('renders one variant option per product variant', () => {
-      const el: HTMLElement = create({ id: 'CL-01' }).nativeElement;
+      const el: ShadowRoot = (create({ id: 'CL-01' }).nativeElement as HTMLElement)
+        .shadowRoot!;
       expect(el.querySelectorAll('app-variant-option').length).toBe(2);
     });
 
     it('binds the selected sku onto mfe-add-to-cart and mfe-recommendations', () => {
-      const el: HTMLElement = create({
+      const el: ShadowRoot = (create({
         id: 'CL-01',
         sku: 'CL-01-GY',
-      }).nativeElement;
+      }).nativeElement as HTMLElement).shadowRoot!;
       expect(el.querySelector('mfe-add-to-cart')?.getAttribute('sku')).toBe(
         'CL-01-GY',
       );
@@ -168,9 +170,8 @@ describe('ProductPage', () => {
     });
 
     it('renders the product image with the composed src, srcset and alt', () => {
-      const img = create({ id: 'CL-01' }).nativeElement.querySelector(
-        'img',
-      ) as HTMLImageElement;
+      const img = (create({ id: 'CL-01' }).nativeElement as HTMLElement)
+        .shadowRoot!.querySelector('img') as HTMLImageElement;
       expect(img.getAttribute('src')).toBe(
         'http://cdn.test/cdn/img/product/400/CL-01-GR.webp',
       );
@@ -180,13 +181,14 @@ describe('ProductPage', () => {
     });
 
     it('renders the "not found" fallback when no id is provided', () => {
-      const el: HTMLElement = create().nativeElement;
+      const el: ShadowRoot = (create().nativeElement as HTMLElement).shadowRoot!;
       expect(el.textContent).toContain('Product not found');
-      expect(el.querySelector('main')).toBeFalsy();
+      expect(el.querySelector('.d_ProductPage__details')).toBeFalsy();
     });
 
     it('renders the "not found" fallback when the id does not match', () => {
-      const el: HTMLElement = create({ id: 'NOPE' }).nativeElement;
+      const el: ShadowRoot = (create({ id: 'NOPE' }).nativeElement as HTMLElement)
+        .shadowRoot!;
       expect(el.textContent).toContain('Product not found');
     });
   });

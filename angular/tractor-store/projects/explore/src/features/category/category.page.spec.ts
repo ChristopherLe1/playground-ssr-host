@@ -71,7 +71,8 @@ describe('CategoryPage', () => {
   });
 
   it('renders a product tile per product and a filter component', () => {
-    const el: HTMLElement = create({ category: 'classic' }).nativeElement;
+    const el: ShadowRoot = (create({ category: 'classic' })
+      .nativeElement as HTMLElement).shadowRoot!;
     expect(el.querySelectorAll('app-product-tile').length).toBe(2);
     expect(el.querySelector('app-filter')).not.toBeNull();
     expect(el.querySelector('h2')?.textContent).toBe('Classics');

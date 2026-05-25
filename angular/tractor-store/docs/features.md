@@ -58,7 +58,7 @@ public IDs.
 | ----------------------------- | ----------------------------- | ---------------- |
 | `explore.home`                | `/explore/`                   | `mfe-home`       |
 | `explore.products`            | `/explore/products`           | `mfe-category`   |
-| `explore.products.category`   | `/explore/products/:category` | `mfe-category`   |
+| `explore.products.category`   | `/explore/products/{category}` | `mfe-category`   |
 | `explore.stores`              | `/explore/stores`             | `mfe-stores`     |
 
 ### Cross-remote fragments it loads
@@ -99,7 +99,7 @@ surface area and the most cross-remote integration.
 
 | Public intent ID   | Path                       | Renders        |
 | ------------------ | -------------------------- | -------------- |
-| `decide.product`   | `/decide/product/:id`      | `mfe-product`  |
+| `decide.product`   | `/decide/product/{id}`     | `mfe-product`  |
 
 The page reads `id` from the path and an optional `sku` query parameter
 from `routeParams`, e.g. `/decide/product/123?sku=BLUE-XL`.

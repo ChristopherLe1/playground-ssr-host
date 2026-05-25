@@ -62,7 +62,9 @@ describe('RecommendationsComponent', () => {
     it('renders one recommendation per item from the http service', () => {
       const fixture = create(['CL-01-GY']);
       expect(
-        fixture.nativeElement.querySelectorAll('app-recommendation').length,
+        (fixture.nativeElement as HTMLElement).shadowRoot!.querySelectorAll(
+          'app-recommendation',
+        ).length,
       ).toBe(1);
     });
 
@@ -80,14 +82,16 @@ describe('RecommendationsComponent', () => {
       fixture.componentRef.setInput('skus', ['CL-01-GY']);
       fixture.detectChanges();
       expect(
-        fixture.nativeElement.querySelector('.e_Recommendations'),
+        (fixture.nativeElement as HTMLElement).shadowRoot!.querySelector(
+          '.e_Recommendations',
+        ),
       ).toBeNull();
     });
 
     it('marks the panel with the explore boundary attribute', () => {
       const fixture = create(['CL-01-GY']);
       expect(
-        fixture.nativeElement
+        (fixture.nativeElement as HTMLElement).shadowRoot!
           .querySelector('.e_Recommendations')
           ?.getAttribute('data-boundary'),
       ).toBe('explore');

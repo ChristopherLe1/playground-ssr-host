@@ -25,7 +25,7 @@ describe('ProductTileComponent', () => {
   }
 
   it('renders the product name and formatted price', () => {
-    const el: HTMLElement = create().nativeElement;
+    const el: ShadowRoot = (create().nativeElement as HTMLElement).shadowRoot!;
     expect(el.querySelector('.e_Product_name')?.textContent).toContain(
       'Heritage Workhorse',
     );
@@ -35,7 +35,9 @@ describe('ProductTileComponent', () => {
   });
 
   it('builds the cdn-prefixed src and srcset from the [size] template', () => {
-    const img = create().nativeElement.querySelector('img') as HTMLImageElement;
+    const img = (create().nativeElement as HTMLElement).shadowRoot!.querySelector(
+      'img',
+    ) as HTMLImageElement;
     expect(img.getAttribute('src')).toBe('http://cdn.test/img/200/CL-01.webp');
     expect(img.getAttribute('srcset')).toBe(
       'http://cdn.test/img/200/CL-01.webp 200w, ' +

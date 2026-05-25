@@ -41,11 +41,14 @@ describe('FilterComponent', () => {
   }
 
   it('renders one item per filter', () => {
-    expect(create().nativeElement.querySelectorAll('li').length).toBe(3);
+    expect(
+      (create().nativeElement as HTMLElement).shadowRoot!.querySelectorAll('li')
+        .length,
+    ).toBe(3);
   });
 
   it('renders the active filter as a static label, not a link', () => {
-    const el: HTMLElement = create().nativeElement;
+    const el: ShadowRoot = (create().nativeElement as HTMLElement).shadowRoot!;
     const active = el.querySelector('.e_Filter__filter--active');
     expect(active?.textContent).toContain('Classics');
     expect(active?.querySelector('a')).toBeNull();

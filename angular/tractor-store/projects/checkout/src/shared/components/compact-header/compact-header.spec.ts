@@ -28,7 +28,7 @@ describe('CompactHeaderComponent', () => {
   });
 
   it('renders the logo with cdn src and accessible alt text', () => {
-    const img = create().nativeElement.querySelector(
+    const img = (create().nativeElement as HTMLElement).shadowRoot!.querySelector(
       'img',
     ) as HTMLImageElement;
     expect(img.getAttribute('src')).toBe('http://cdn.test/cdn/img/logo.svg');

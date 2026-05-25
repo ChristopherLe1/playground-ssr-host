@@ -42,7 +42,7 @@ export const navContribution: NavContribution = {
   intents: [
     { id: 'home',              path: '/',                    element: 'mfe-home' },
     { id: 'products',          path: '/products',            element: 'mfe-category' },
-    { id: 'products.category', path: '/products/:category',  element: 'mfe-category' },
+    { id: 'products.category', path: '/products/{category}', element: 'mfe-category' },
     { id: 'stores',            path: '/stores',              element: 'mfe-stores' },
   ],
 };
@@ -58,8 +58,10 @@ The shape (`libs/navigation/src/lib/nav-types.ts`):
     `basePath` when it registers each intent, so `explore`'s
     `{ id: 'home' }` becomes the public `explore.home`. Other remotes
     link to the full ID, never to a URL.
-  - `path` — the path *inside* `basePath`, with optional `:param`
-    segments.
+  - `path` — the path *inside* `basePath`, with optional `{param}`
+    segments (RFC 6570 URI Template syntax — the host's `toRoutePath`
+    converts these to Angular's `:param` form when registering routes,
+    so the contribution stays framework-neutral).
   - `element` — the `mfe-*` custom element to render at that path.
 - `navBar?` — optional contributions to a shared nav bar (intent ID +
   label + order). The registry exposes a sorted list of them via
@@ -326,7 +328,7 @@ analytics) only needs to be added once at the host listener.
 Two kinds of parameters can travel with an intent:
 
 - **Path params** — placeholders in the intent's `path`, e.g.
-  `/product/:id`. The registry fills them in from `navPayload`.
+  `/product/{id}`. The registry fills them in from `navPayload`.
 - **Query params** — anything in `navPayload` that wasn't consumed by
   a placeholder gets appended as a query string.
 
@@ -352,7 +354,7 @@ navigateTo.emit({
 });
 ```
 
-with the contribution `{ id: 'product', path: '/product/:id', element: 'mfe-product' }`
+with the contribution `{ id: 'product', path: '/product/{id}', element: 'mfe-product' }`
 resolves to `/decide/product/123?sku=BLUE-XL`. The remote then reads
 `id` and `sku` off `routeParams` on its custom element.
 

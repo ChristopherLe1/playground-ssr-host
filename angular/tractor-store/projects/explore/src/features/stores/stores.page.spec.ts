@@ -29,16 +29,19 @@ describe('StoresPage', () => {
     const fixture = TestBed.createComponent(StoresPage);
     fixture.detectChanges();
     expect(
-      fixture.nativeElement.querySelectorAll('app-store-tile').length,
+      (fixture.nativeElement as HTMLElement).shadowRoot!.querySelectorAll(
+        'app-store-tile',
+      ).length,
     ).toBe(2);
   });
 
   it('renders the page heading', () => {
     const fixture = TestBed.createComponent(StoresPage);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('h2')?.textContent).toBe(
-      'Our Stores',
-    );
+    expect(
+      (fixture.nativeElement as HTMLElement).shadowRoot!.querySelector('h2')
+        ?.textContent,
+    ).toBe('Our Stores');
   });
 
   it('renders no tiles when the store list is empty', () => {
@@ -55,7 +58,9 @@ describe('StoresPage', () => {
     const fixture = TestBed.createComponent(StoresPage);
     fixture.detectChanges();
     expect(
-      fixture.nativeElement.querySelectorAll('app-store-tile').length,
+      (fixture.nativeElement as HTMLElement).shadowRoot!.querySelectorAll(
+        'app-store-tile',
+      ).length,
     ).toBe(0);
   });
 

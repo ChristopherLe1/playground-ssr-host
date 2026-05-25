@@ -16,7 +16,10 @@ describe('NavigationComponent', () => {
   it('renders one link per top-level nav entry', () => {
     const fixture = TestBed.createComponent(NavigationComponent);
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelectorAll('a').length).toBe(2);
+    expect(
+      (fixture.nativeElement as HTMLElement).shadowRoot!.querySelectorAll('a')
+        .length,
+    ).toBe(2);
   });
 
   it('declares the explore.products and explore.stores intents', () => {

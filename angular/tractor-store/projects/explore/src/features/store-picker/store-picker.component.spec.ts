@@ -64,7 +64,7 @@ describe('StorePickerComponent', () => {
 
   it('renders one entry per store with cdn-prefixed image src/srcset', () => {
     const fixture = create();
-    const entries = fixture.nativeElement.querySelectorAll(
+    const entries = (fixture.nativeElement as HTMLElement).shadowRoot!.querySelectorAll(
       '.e_StorePicker_entry',
     );
     expect(entries.length).toBe(2);
@@ -92,14 +92,18 @@ describe('StorePickerComponent', () => {
     const fixture = TestBed.createComponent(StorePickerComponent);
     fixture.detectChanges();
     expect(
-      fixture.nativeElement.querySelectorAll('.e_StorePicker_entry').length,
+      (fixture.nativeElement as HTMLElement).shadowRoot!.querySelectorAll(
+        '.e_StorePicker_entry',
+      ).length,
     ).toBe(0);
   });
 
   it('hides the selected display until select() is called', () => {
     const fixture = create();
     expect(
-      fixture.nativeElement.querySelector('.e_StorePicker_selected'),
+      (fixture.nativeElement as HTMLElement).shadowRoot!.querySelector(
+        '.e_StorePicker_selected',
+      ),
     ).toBeNull();
   });
 
@@ -116,7 +120,7 @@ describe('StorePickerComponent', () => {
     expect(cmp.selected()).toEqual(storeFixture[1]);
     expect(seen).toHaveBeenCalledWith({ id: 'store-b' });
 
-    const selectedDisplay = fixture.nativeElement.querySelector(
+    const selectedDisplay = (fixture.nativeElement as HTMLElement).shadowRoot!.querySelector(
       '.e_StorePicker_selected',
     ) as HTMLElement;
     expect(selectedDisplay).not.toBeNull();
