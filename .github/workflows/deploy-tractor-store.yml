@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'angular/tractor-store/**'
-      - '.github/workflows/deploy-tractor-store.yml'
+      - "angular/tractor-store/**"
+      - ".github/workflows/deploy-tractor-store.yml"
   workflow_dispatch:
 
 concurrency:
@@ -28,11 +28,11 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 11
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: pnpm
           cache-dependency-path: angular/tractor-store/pnpm-lock.yaml
 
@@ -104,4 +104,4 @@ jobs:
           publish_dir: angular/tractor-store/_site
           publish_branch: gh-pages
           force_orphan: true
-          commit_message: 'deploy tractor-store: ${{ github.sha }}'
+          commit_message: "deploy tractor-store: ${{ github.sha }}"
