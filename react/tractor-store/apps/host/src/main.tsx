@@ -4,11 +4,30 @@ import {
   consoleLogger,
   globalThisStorageEntry,
 } from '@softarc/native-federation-orchestrator/options';
-import { setupNfRegistry } from '@internal/event-bus';
+import {
+  createRegistry,
+  NFEventRegistry,
+} from '@softarc/native-federation-orchestrator/registry';
 
-// Global CSS reset / design tokens are loaded via <link> from the CDN
-// (see apps/host/public/index.html), so they paint before the JS bootstrap.
-setupNfRegistry({ force: true });
+declare global {
+  interface Window {
+    __NF_REGISTRY__: NFEventRegistry;
+  }
+}
+
+// Install the cross-MFE event bus before any module that calls
+// `defineChannel(...)` is imported — every channel handle is created (and
+// frozen) at module load time and throws if the bus is missing. The dynamic
+// `import('./app/bootstrap')` below is what first pulls in `@react-internal/event-bus`,
+// by which point this IIFE has already populated `window.__NF_REGISTRY__`.
+(function (): void {
+  const registry = createRegistry({
+    maxStreams: 20,
+    maxEvents: 1,
+    removePercentage: 0.25,
+  });
+  window.__NF_REGISTRY__ = Object.freeze(registry());
+})();
 
 let showErrors = false;
 Promise.all([
@@ -25,7 +44,7 @@ Promise.all([
       logLevel: 'debug',
     });
     const { bootstrap } = await import('./app/bootstrap');
-    await bootstrap(nf, env, manifest);
+    await bootstrap(env, nf, manifest);
   })
   .catch((err) => {
     console.error('Failed to load app!');

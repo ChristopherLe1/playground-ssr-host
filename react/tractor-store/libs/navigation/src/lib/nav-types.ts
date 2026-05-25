@@ -1,4 +1,4 @@
-import type { NavPayload } from '@internal/url';
+import type { NavPayload } from '@react-internal/url';
 
 /** A request to navigate to an intent — what a `NavigateLink` author writes. */
 export interface NavTarget {

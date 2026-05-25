@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { EnvironmentConfig, LoadRemoteSlice } from '@internal/federation';
+import { EnvironmentConfig, LoadRemoteSlice } from '@ng-internal/federation';
 
 export const ENV = new InjectionToken<EnvironmentConfig>('ENV');
 

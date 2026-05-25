@@ -11,7 +11,7 @@ const PORT = 4003;
 
 mkdirSync('dist', { recursive: true });
 
-const federation = await runEsBuildBuilder('federation.config.js', {
+const federation = await runEsBuildBuilder('federation.config.mjs', {
   outputPath: 'dist',
   tsConfig: 'tsconfig.json',
   dev: isDev,

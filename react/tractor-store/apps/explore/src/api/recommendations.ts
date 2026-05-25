@@ -1,4 +1,4 @@
-import type { NavTarget } from '@internal/navigation';
+import type { NavTarget } from '@react-internal/navigation';
 import { recommendationCatalog } from './recommendations-fixtures';
 
 // Seed SKUs used by the homepage recommendations rail. Lives here because

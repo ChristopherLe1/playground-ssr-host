@@ -1,7 +1,11 @@
-import { type ReactNode, type MouseEvent } from 'react';
-import { navigateTo } from '@internal/event-bus';
-import { resolveIntent } from '@internal/navigation';
-import type { NavPayload } from '@internal/url';
+import { useSyncExternalStore, type ReactNode, type MouseEvent } from 'react';
+import { navigateTo } from '@react-internal/event-bus';
+import {
+  getNavIntents,
+  resolveIntent,
+  subscribeNavIntents,
+} from '@react-internal/navigation';
+import type { NavPayload } from '@react-internal/url';
 import { useScopedStyles } from '../shadow-root-context';
 import { buttonStyles } from './button-styles';
 
@@ -38,6 +42,9 @@ const buildClass = (
 
 export function Button(props: ButtonProps) {
   useScopedStyles('ui-button', buttonStyles);
+  // Keep href in sync with the host's `nav:intents` broadcast — without this
+  // a Button rendered before the map arrives stays at href="#".
+  useSyncExternalStore(subscribeNavIntents, getNavIntents, getNavIntents);
   const {
     type = 'button',
     value,

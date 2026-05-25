@@ -1,7 +1,7 @@
 import { type RouteObject } from 'react-router-dom';
-import type { NavIntent } from '@internal/navigation';
-import { toRoutePath } from '@internal/url';
-import type { LoadedContribution } from './load-contributions';
+import type { NavIntent } from '@react-internal/navigation';
+import { toRoutePath } from '@react-internal/url';
+import type { RemoteRouteContribution } from './load-contributions';
 import { RemoteShell } from '../RemoteShell';
 import { RouteErrorFallback } from './RouteErrorFallback';
 
@@ -16,7 +16,7 @@ const isRoutedIntent = (
  * custom element.
  */
 export const buildRemoteRoutes = (
-  loaded: readonly LoadedContribution[],
+  loaded: readonly RemoteRouteContribution[],
 ): RouteObject[] => {
   const routes: RouteObject[] = [];
   for (const { contribution } of loaded) {

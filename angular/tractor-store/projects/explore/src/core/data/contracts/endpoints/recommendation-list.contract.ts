@@ -1,4 +1,4 @@
-import type { NavTarget } from '@internal/navigation';
+import type { NavTarget } from '@ng-internal/navigation';
 
 export interface RecommendationDto {
   sku: string;

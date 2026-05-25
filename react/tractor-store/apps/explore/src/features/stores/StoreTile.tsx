@@ -1,7 +1,7 @@
 import type { Store } from '../../api/stores';
-import { useScopedStyles } from '@internal/mfe-runtime';
-import { useCdnBase } from '@internal/mfe-runtime';
-import { imgSrc, imgSrcset } from '@internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
+import { useCdnBase } from '@react-internal/mfe-runtime';
+import { imgSrc, imgSrcset } from '@react-internal/mfe-runtime';
 import { storeTileStyles } from './store-tile-styles';
 
 export function StoreTile({ store }: { store: Store }) {

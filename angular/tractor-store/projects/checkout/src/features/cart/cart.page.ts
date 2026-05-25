@@ -6,7 +6,7 @@ import {
   computed,
   inject,
 } from '@angular/core';
-import { ButtonComponent } from '@internal/ui';
+import { ButtonComponent } from '@ng-internal/ui';
 import { VariantHttp } from '../../core/data/http/variant-http';
 import { CartStore } from '../../core/data/store/cart-store';
 import {

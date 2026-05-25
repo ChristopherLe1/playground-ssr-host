@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { param, type RouteParams } from '@internal/url';
+import { param, type RouteParams } from '@react-internal/url';
 import { getProductById } from '../../api/products';
-import { useAsync } from '@internal/mfe-runtime';
-import { useCdnBase, useRemoteLoader } from '@internal/mfe-runtime';
-import { useScopedStyles } from '@internal/mfe-runtime';
-import { imgSrc, imgSrcset } from '@internal/mfe-runtime';
+import { useAsync } from '@react-internal/mfe-runtime';
+import { useCdnBase, useRemoteLoader } from '@react-internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
+import { imgSrc, imgSrcset } from '@react-internal/mfe-runtime';
 import { VariantOption } from './VariantOption';
 import { productStyles } from './product-styles';
 

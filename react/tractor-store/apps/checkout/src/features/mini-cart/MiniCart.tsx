@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Button } from '@internal/ui';
+import { Button } from '@react-internal/ui';
 import { useCart } from '../../cart/use-cart';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { miniCartStyles } from './mini-cart-styles';
 
 export function MiniCart() {

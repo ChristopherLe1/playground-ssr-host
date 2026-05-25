@@ -13,8 +13,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { NavigateToDirective } from '@internal/navigation';
-import { ButtonComponent } from '@internal/ui';
+import { NavigateToDirective } from '@ng-internal/navigation';
+import { ButtonComponent } from '@ng-internal/ui';
 import { VariantHttp } from '../../core/data/http/variant-http';
 import { CartStore } from '../../core/data/store/cart-store';
 

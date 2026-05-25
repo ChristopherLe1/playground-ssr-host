@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { param, type RouteParams } from '@internal/url';
+import { param, type RouteParams } from '@react-internal/url';
 import { getCategories } from '../../api/categories';
-import { useAsync } from '@internal/mfe-runtime';
-import { useRemoteLoader } from '@internal/mfe-runtime';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { useAsync } from '@react-internal/mfe-runtime';
+import { useRemoteLoader } from '@react-internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { ProductTile } from './ProductTile';
 import { Filter, type FilterItem } from './Filter';
 import { categoryStyles } from './category-styles';

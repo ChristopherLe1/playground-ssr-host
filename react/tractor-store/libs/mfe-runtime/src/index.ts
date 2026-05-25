@@ -9,7 +9,7 @@ export {
   ShadowRootContext,
   ShadowRootProvider,
   useScopedStyles,
-} from '@internal/ui';
+} from '@react-internal/ui';
 export * from './lib/use-async';
 export * from './lib/cdn';
 export * from './lib/price';

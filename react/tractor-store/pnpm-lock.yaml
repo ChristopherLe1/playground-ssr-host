@@ -56,22 +56,22 @@ importers:
 
   apps/checkout:
     dependencies:
-      '@internal/event-bus':
+      '@react-internal/event-bus':
         specifier: workspace:*
         version: link:../../libs/event-bus
-      '@internal/federation':
+      '@react-internal/federation':
         specifier: workspace:*
         version: link:../../libs/federation
-      '@internal/mfe-runtime':
+      '@react-internal/mfe-runtime':
         specifier: workspace:*
         version: link:../../libs/mfe-runtime
-      '@internal/navigation':
+      '@react-internal/navigation':
         specifier: workspace:*
         version: link:../../libs/navigation
-      '@internal/ui':
+      '@react-internal/ui':
         specifier: workspace:*
         version: link:../../libs/ui
-      '@internal/url':
+      '@react-internal/url':
         specifier: workspace:*
         version: link:../../libs/url
       '@softarc/native-federation-orchestrator':
@@ -86,22 +86,22 @@ importers:
 
   apps/decide:
     dependencies:
-      '@internal/event-bus':
+      '@react-internal/event-bus':
         specifier: workspace:*
         version: link:../../libs/event-bus
-      '@internal/federation':
+      '@react-internal/federation':
         specifier: workspace:*
         version: link:../../libs/federation
-      '@internal/mfe-runtime':
+      '@react-internal/mfe-runtime':
         specifier: workspace:*
         version: link:../../libs/mfe-runtime
-      '@internal/navigation':
+      '@react-internal/navigation':
         specifier: workspace:*
         version: link:../../libs/navigation
-      '@internal/ui':
+      '@react-internal/ui':
         specifier: workspace:*
         version: link:../../libs/ui
-      '@internal/url':
+      '@react-internal/url':
         specifier: workspace:*
         version: link:../../libs/url
       '@softarc/native-federation-orchestrator':
@@ -116,22 +116,22 @@ importers:
 
   apps/explore:
     dependencies:
-      '@internal/event-bus':
+      '@react-internal/event-bus':
         specifier: workspace:*
         version: link:../../libs/event-bus
-      '@internal/federation':
+      '@react-internal/federation':
         specifier: workspace:*
         version: link:../../libs/federation
-      '@internal/mfe-runtime':
+      '@react-internal/mfe-runtime':
         specifier: workspace:*
         version: link:../../libs/mfe-runtime
-      '@internal/navigation':
+      '@react-internal/navigation':
         specifier: workspace:*
         version: link:../../libs/navigation
-      '@internal/ui':
+      '@react-internal/ui':
         specifier: workspace:*
         version: link:../../libs/ui
-      '@internal/url':
+      '@react-internal/url':
         specifier: workspace:*
         version: link:../../libs/url
       '@softarc/native-federation-orchestrator':
@@ -146,19 +146,19 @@ importers:
 
   apps/host:
     dependencies:
-      '@internal/event-bus':
+      '@react-internal/event-bus':
         specifier: workspace:*
         version: link:../../libs/event-bus
-      '@internal/federation':
+      '@react-internal/federation':
         specifier: workspace:*
         version: link:../../libs/federation
-      '@internal/navigation':
+      '@react-internal/navigation':
         specifier: workspace:*
         version: link:../../libs/navigation
-      '@internal/ui':
+      '@react-internal/ui':
         specifier: workspace:*
         version: link:../../libs/ui
-      '@internal/url':
+      '@react-internal/url':
         specifier: workspace:*
         version: link:../../libs/url
       '@softarc/native-federation-orchestrator':
@@ -180,13 +180,13 @@ importers:
 
   libs/mfe-runtime:
     dependencies:
-      '@internal/federation':
+      '@react-internal/federation':
         specifier: workspace:*
         version: link:../federation
-      '@internal/ui':
+      '@react-internal/ui':
         specifier: workspace:*
         version: link:../ui
-      '@internal/url':
+      '@react-internal/url':
         specifier: workspace:*
         version: link:../url
       react:
@@ -198,10 +198,10 @@ importers:
 
   libs/navigation:
     dependencies:
-      '@internal/event-bus':
+      '@react-internal/event-bus':
         specifier: workspace:*
         version: link:../event-bus
-      '@internal/url':
+      '@react-internal/url':
         specifier: workspace:*
         version: link:../url
       react:
@@ -210,13 +210,13 @@ importers:
 
   libs/ui:
     dependencies:
-      '@internal/event-bus':
+      '@react-internal/event-bus':
         specifier: workspace:*
         version: link:../event-bus
-      '@internal/navigation':
+      '@react-internal/navigation':
         specifier: workspace:*
         version: link:../navigation
-      '@internal/url':
+      '@react-internal/url':
         specifier: workspace:*
         version: link:../url
 

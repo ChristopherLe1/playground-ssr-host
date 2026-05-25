@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { Button } from '@internal/ui';
-import { useRemoteLoader } from '@internal/mfe-runtime';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { Button } from '@react-internal/ui';
+import { useRemoteLoader } from '@react-internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { thanksStyles } from './thanks-styles';
 
 type ConfettiFn = (options: Record<string, unknown>) => void;

@@ -1,7 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { App } from './app';
 import { appConfig } from './app.config';
-import { EnvironmentConfig, toCdnUrl } from '@internal/federation';
+import { EnvironmentConfig, toCdnUrl } from '@ng-internal/federation';
 import {
   NativeFederationResult,
   FederationManifest,

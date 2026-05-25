@@ -1,8 +1,8 @@
 import { StrictMode, type ComponentType } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
-import type { EnvironmentConfig, LoadRemoteSlice } from '@internal/federation';
-import type { RouteParams } from '@internal/url';
-import { ErrorBoundary, ShadowRootProvider, adoptStyles } from '@internal/ui';
+import type { EnvironmentConfig, LoadRemoteSlice } from '@react-internal/federation';
+import type { RouteParams } from '@react-internal/url';
+import { ErrorBoundary, ShadowRootProvider, adoptStyles } from '@react-internal/ui';
 import {
   ensureRemoteContext,
   RemoteContextProvider,

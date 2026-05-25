@@ -1,5 +1,5 @@
 {
-  "name": "@internal/navigation",
+  "name": "@react-internal/navigation",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,8 +9,8 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@internal/event-bus": "workspace:*",
-    "@internal/url": "workspace:*"
+    "@react-internal/event-bus": "workspace:*",
+    "@react-internal/url": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.3.1"

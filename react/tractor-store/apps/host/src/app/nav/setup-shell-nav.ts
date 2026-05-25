@@ -8,15 +8,17 @@ import type {
   FederationManifest,
   NativeFederationResult,
 } from '@softarc/native-federation-orchestrator';
-import { navigateTo } from '@internal/event-bus';
-import { setSliceIndex } from '@internal/federation';
-import { setIntentResolver } from '@internal/navigation';
-import { loadContributions, type LoadedContribution } from './load-contributions';
+import { navigateTo, navIntents } from '@react-internal/event-bus';
+import { setSliceIndex } from '@react-internal/federation';
+import {
+  loadContributions,
+  type RemoteRouteContribution,
+} from './load-contributions';
 import { NavRegistry } from './nav-registry';
 import { buildRemoteRoutes } from './remote-routes';
 
 const buildSliceIndex = (
-  loaded: readonly LoadedContribution[],
+  loaded: readonly RemoteRouteContribution[],
 ): Map<string, string> => {
   const index = new Map<string, string>();
   for (const { remoteName, contribution } of loaded) {
@@ -77,16 +79,11 @@ export const setupShellNavigation = async ({
     registry.register(contribution);
   }
 
-  setIntentResolver((id, payload) => {
-    // NavigateLink renders an href from this resolver during render. Missing
-    // params should not crash the tree — let the click-time `navigate()`
-    // surface the diagnostic instead.
-    try {
-      return registry.resolve(id, payload ?? {});
-    } catch {
-      return undefined;
-    }
-  });
+  // Broadcast the intent map so NavigateLink instances in remote MFEs can
+  // resolve hrefs locally without round-tripping through a per-render
+  // resolver. The bus replays the last event to late subscribers, so remotes
+  // loaded after this emit still get the snapshot.
+  navIntents.emit(registry.getIntents());
   setSliceIndex(buildSliceIndex(loaded));
 
   navigateTo.on(({ id, payload }) => {

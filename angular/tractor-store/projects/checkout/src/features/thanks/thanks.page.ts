@@ -8,7 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ButtonComponent } from '@internal/ui';
+import { ButtonComponent } from '@ng-internal/ui';
 import { LOADER } from '../../core/remote-loader';
 
 type ConfettiFn = (options: Record<string, unknown>) => void;

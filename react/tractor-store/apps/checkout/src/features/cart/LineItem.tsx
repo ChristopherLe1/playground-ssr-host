@@ -1,10 +1,10 @@
 import { type FormEvent } from 'react';
-import { NavigateLink } from '@internal/navigation';
-import { Button } from '@internal/ui';
-import { useScopedStyles } from '@internal/mfe-runtime';
-import { useCdnBase } from '@internal/mfe-runtime';
+import { NavigateLink } from '@react-internal/navigation';
+import { Button } from '@react-internal/ui';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
+import { useCdnBase } from '@react-internal/mfe-runtime';
 import { useCart } from '../../cart/use-cart';
-import { imgSrc, imgSrcset } from '@internal/mfe-runtime';
+import { imgSrc, imgSrcset } from '@react-internal/mfe-runtime';
 import { lineItemStyles } from './line-item-styles';
 
 export interface LineItemView {

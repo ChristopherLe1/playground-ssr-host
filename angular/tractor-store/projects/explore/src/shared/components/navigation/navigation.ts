@@ -3,7 +3,7 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { NavigateToDirective } from '@internal/navigation';
+import { NavigateToDirective } from '@ng-internal/navigation';
 
 @Component({
   selector: 'app-navigation',

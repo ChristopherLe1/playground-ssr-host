@@ -8,7 +8,7 @@ import {
 import { provideZonelessChangeDetection } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { LoadRemoteSlice } from '@internal/federation';
+import type { LoadRemoteSlice } from '@ng-internal/federation';
 import { RemoteShellComponent } from './remote-shell.component';
 import { LOAD_REMOTE_SLICE } from '../env.config';
 

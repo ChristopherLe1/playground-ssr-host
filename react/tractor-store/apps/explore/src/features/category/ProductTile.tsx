@@ -1,9 +1,9 @@
-import { NavigateLink } from '@internal/navigation';
+import { NavigateLink } from '@react-internal/navigation';
 import type { Product } from '../../api/categories';
-import { useScopedStyles } from '@internal/mfe-runtime';
-import { useCdnBase } from '@internal/mfe-runtime';
-import { imgSrc, imgSrcset } from '@internal/mfe-runtime';
-import { fmtPrice } from '@internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
+import { useCdnBase } from '@react-internal/mfe-runtime';
+import { imgSrc, imgSrcset } from '@react-internal/mfe-runtime';
+import { fmtPrice } from '@react-internal/mfe-runtime';
 import { productTileStyles } from './product-tile-styles';
 
 export function ProductTile({ product }: { product: Product }) {

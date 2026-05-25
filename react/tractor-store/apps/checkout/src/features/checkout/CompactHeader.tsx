@@ -1,7 +1,7 @@
-import { NavigateLink } from '@internal/navigation';
-import { useScopedStyles } from '@internal/mfe-runtime';
-import { useCdnBase } from '@internal/mfe-runtime';
-import { cdnUrl } from '@internal/mfe-runtime';
+import { NavigateLink } from '@react-internal/navigation';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
+import { useCdnBase } from '@react-internal/mfe-runtime';
+import { cdnUrl } from '@react-internal/mfe-runtime';
 import { compactHeaderStyles } from './compact-header-styles';
 
 export function CompactHeader() {

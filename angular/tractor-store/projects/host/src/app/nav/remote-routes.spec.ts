@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { NavContribution } from '@internal/navigation';
+import type { NavContribution } from '@ng-internal/navigation';
 import { buildRemoteRoutes } from './remote-routes';
 
 const loaded = (contribution: NavContribution) => ({

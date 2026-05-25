@@ -1,6 +1,6 @@
 import { getRecommendationsBySeedSkus } from '../../api/recommendations';
-import { useAsync } from '@internal/mfe-runtime';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { useAsync } from '@react-internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { RecommendationTile } from './RecommendationTile';
 import { recommendationsStyles } from './recommendations-styles';
 

@@ -5,7 +5,7 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { NavigateToDirective } from '@internal/navigation';
+import { NavigateToDirective } from '@ng-internal/navigation';
 
 @Component({
   selector: 'app-variant-option',

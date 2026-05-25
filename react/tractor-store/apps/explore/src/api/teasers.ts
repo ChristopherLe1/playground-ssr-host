@@ -1,4 +1,4 @@
-import type { NavTarget } from '@internal/navigation';
+import type { NavTarget } from '@react-internal/navigation';
 
 export interface Teaser {
   title: string;

@@ -1,11 +1,16 @@
 import {
+  useSyncExternalStore,
   type AnchorHTMLAttributes,
   type MouseEvent,
   type ReactNode,
 } from 'react';
-import { navigateTo } from '@internal/event-bus';
-import type { NavPayload } from '@internal/url';
-import { resolveIntent } from './nav-resolver';
+import { navigateTo } from '@react-internal/event-bus';
+import type { NavPayload } from '@react-internal/url';
+import {
+  getNavIntents,
+  resolveIntent,
+  subscribeNavIntents,
+} from './nav-resolver';
 
 export interface NavigateLinkProps
   extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick' | 'href'> {
@@ -16,10 +21,10 @@ export interface NavigateLinkProps
 
 /**
  * Cross-MFE navigation link. Resolves the intent + params to a concrete href
- * via the host-registered resolver so the anchor is focusable, screen-reader-
- * announced as a link, and supports modifier-click / right-click → "Copy link
- * address". On plain left-click we preventDefault and emit `nav:navigate`; the
- * host's NavRegistry drives the SPA router.
+ * from a snapshot of the `nav:intents` channel so the anchor is focusable,
+ * screen-reader-announced as a link, and supports modifier-click /
+ * right-click → "Copy link address". On plain left-click we preventDefault
+ * and emit `nav:navigate`; the host's NavRegistry drives the SPA router.
  */
 export function NavigateLink({
   intent,
@@ -27,6 +32,11 @@ export function NavigateLink({
   children,
   ...rest
 }: NavigateLinkProps) {
+  // Re-render when the host (re)publishes the intent map. Without the
+  // subscription, the first render sees an empty map and the href would
+  // stick at "#".
+  useSyncExternalStore(subscribeNavIntents, getNavIntents, getNavIntents);
+
   const href = resolveIntent(intent, params) ?? '#';
   const onClick = (event: MouseEvent<HTMLAnchorElement>): void => {
     if (event.defaultPrevented) return;

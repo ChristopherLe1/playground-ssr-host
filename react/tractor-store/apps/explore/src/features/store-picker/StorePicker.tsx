@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
-import { storeSelected } from '@internal/event-bus';
-import { Button } from '@internal/ui';
+import { storeSelected } from '@react-internal/event-bus';
+import { Button } from '@react-internal/ui';
 import { getStores, type Store } from '../../api/stores';
-import { useAsync } from '@internal/mfe-runtime';
-import { useCdnBase } from '@internal/mfe-runtime';
-import { imgSrc, imgSrcset } from '@internal/mfe-runtime';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { useAsync } from '@react-internal/mfe-runtime';
+import { useCdnBase } from '@react-internal/mfe-runtime';
+import { imgSrc, imgSrcset } from '@react-internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { storePickerStyles } from './store-picker-styles';
 
 export function StorePicker() {

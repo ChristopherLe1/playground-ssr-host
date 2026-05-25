@@ -6,7 +6,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { NavigateToDirective } from '@internal/navigation';
+import { NavigateToDirective } from '@ng-internal/navigation';
 import { CartStore } from '../../core/data/store/cart-store';
 
 @Component({

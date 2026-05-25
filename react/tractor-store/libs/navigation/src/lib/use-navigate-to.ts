@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { navigateTo } from '@internal/event-bus';
-import type { NavPayload } from '@internal/url';
+import { navigateTo } from '@react-internal/event-bus';
+import type { NavPayload } from '@react-internal/url';
 
 /**
  * Hook form of NavigateLink. Returns a stable callback that emits the

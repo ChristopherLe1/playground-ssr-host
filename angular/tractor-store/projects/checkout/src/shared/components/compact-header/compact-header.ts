@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
   inject,
 } from '@angular/core';
-import { NavigateToDirective } from '@internal/navigation';
+import { NavigateToDirective } from '@ng-internal/navigation';
 import { ResourceService } from '../../utils/resource.service';
 
 @Component({

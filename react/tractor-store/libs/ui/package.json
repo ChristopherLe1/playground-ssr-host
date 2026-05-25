@@ -1,5 +1,5 @@
 {
-  "name": "@internal/ui",
+  "name": "@react-internal/ui",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,8 +10,8 @@
     "./global-contract": "./src/lib/global-contract.ts"
   },
   "dependencies": {
-    "@internal/event-bus": "workspace:*",
-    "@internal/navigation": "workspace:*",
-    "@internal/url": "workspace:*"
+    "@react-internal/event-bus": "workspace:*",
+    "@react-internal/navigation": "workspace:*",
+    "@react-internal/url": "workspace:*"
   }
 }

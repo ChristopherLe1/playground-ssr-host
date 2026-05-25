@@ -6,7 +6,7 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { NavigateToDirective } from '@internal/navigation';
+import { NavigateToDirective } from '@ng-internal/navigation';
 import type { RecommendationModel } from '../../../core/data/contracts/models/recommendation.model';
 import { ResourceService } from '../../utils/resource.service';
 

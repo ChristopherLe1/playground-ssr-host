@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from 'react';
-import { Button } from '@internal/ui';
+import { Button } from '@react-internal/ui';
 import { getVariantsBySkus } from '../../api/variants';
 import { useCart } from '../../cart/use-cart';
-import { useAsync } from '@internal/mfe-runtime';
-import { useRemoteLoader } from '@internal/mfe-runtime';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { useAsync } from '@react-internal/mfe-runtime';
+import { useRemoteLoader } from '@react-internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { LineItem, type LineItemView } from './LineItem';
 import { cartStyles } from './cart-styles';
 

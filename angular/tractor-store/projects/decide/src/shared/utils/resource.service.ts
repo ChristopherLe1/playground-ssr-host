@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { toCdnUrl } from '@internal/federation';
+import { toCdnUrl } from '@ng-internal/federation';
 import { ENV } from '../../env.config';
 
 @Injectable({ providedIn: 'root' })

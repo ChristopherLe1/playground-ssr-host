@@ -4,10 +4,30 @@ import {
   consoleLogger,
   globalThisStorageEntry,
 } from '@softarc/native-federation-orchestrator/options';
-import { createSliceLoader } from '@internal/federation';
-import { setupNfRegistry } from '@internal/event-bus';
+import { createSliceLoader } from '@react-internal/federation';
+import {
+  createRegistry,
+  NFEventRegistry,
+} from '@softarc/native-federation-orchestrator/registry';
 
-setupNfRegistry();
+declare global {
+  interface Window {
+    __NF_REGISTRY__: NFEventRegistry;
+  }
+}
+
+// Standalone mode needs the bus installed before the dynamic
+// `import('./features/.../bootstrap')` pulls in `@react-internal/event-bus`
+// — channels throw on construction if `__NF_REGISTRY__` is missing.
+(function (): void {
+  if (window.__NF_REGISTRY__) return;
+  const registry = createRegistry({
+    maxStreams: 10,
+    maxEvents: 10,
+    removePercentage: 0.5,
+  });
+  window.__NF_REGISTRY__ = Object.freeze(registry());
+})();
 
 let showErrors = false;
 Promise.all([
@@ -23,7 +43,7 @@ Promise.all([
       hostRemoteEntry: './remoteEntry.json',
       logLevel: 'debug',
     });
-    const loadRemoteSlice = createSliceLoader(nf, env, manifest);
+    const loadRemoteSlice = createSliceLoader(env, nf, manifest);
 
     // Standalone mode: mount the landing fragment into #root. A
     // `?fragment=<name>` override lets us mount any exposed fragment

@@ -1,5 +1,5 @@
 import { createContext, useContext, type ReactNode } from 'react';
-import type { EnvironmentConfig, LoadRemoteSlice } from '@internal/federation';
+import type { EnvironmentConfig, LoadRemoteSlice } from '@react-internal/federation';
 
 export interface RemoteContextValue {
   readonly env: EnvironmentConfig;

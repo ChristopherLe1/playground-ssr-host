@@ -1,4 +1,4 @@
-import { NavContribution } from '@internal/navigation';
+import { NavContribution } from '@ng-internal/navigation';
 
 export const navContribution: NavContribution = {
   source: '@tractor-store/checkout',

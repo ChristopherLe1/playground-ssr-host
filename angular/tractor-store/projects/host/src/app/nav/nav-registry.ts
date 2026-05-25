@@ -1,11 +1,11 @@
-import { NavContribution } from '@internal/navigation';
+import { NavContribution } from '@ng-internal/navigation';
 import {
   NavPayload,
   appendQueryString,
   joinPath,
   resolveTemplate,
   splitIntentParams,
-} from '@internal/url';
+} from '@ng-internal/url';
 
 export interface NavBarEntry {
   readonly source: string;

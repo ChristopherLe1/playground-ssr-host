@@ -6,7 +6,7 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { NavigateToDirective } from '@internal/navigation';
+import { NavigateToDirective } from '@ng-internal/navigation';
 import type { ProductModel } from '../../../core/data/contracts/models/product.model';
 import { ResourceService } from '../../utils/resource.service';
 import { fmtPrice } from '../../utils/price';

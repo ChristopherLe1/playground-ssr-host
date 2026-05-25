@@ -1,4 +1,4 @@
-import type { EnvironmentConfig } from '@internal/federation';
+import type { EnvironmentConfig } from '@ng-internal/federation';
 
 export const testEnv: EnvironmentConfig = {
   production: false,

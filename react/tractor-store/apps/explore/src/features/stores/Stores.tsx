@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { getStores } from '../../api/stores';
-import { useAsync } from '@internal/mfe-runtime';
-import { useRemoteLoader } from '@internal/mfe-runtime';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { useAsync } from '@react-internal/mfe-runtime';
+import { useRemoteLoader } from '@react-internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { StoreTile } from './StoreTile';
 import { storesStyles } from './stores-styles';
 

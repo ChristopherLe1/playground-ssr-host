@@ -1,9 +1,7 @@
-import type { NavContribution } from '@internal/navigation';
+import type { NavContribution } from '@react-internal/navigation';
 
 export const navContribution: NavContribution = {
   source: '@tractor-store/decide',
   basePath: 'decide',
-  intents: [
-    { id: 'decide.product', path: '/product/:id', element: 'mfe-product' },
-  ],
+  intents: [{ id: 'product', path: '/product/:id', element: 'mfe-product' }],
 };

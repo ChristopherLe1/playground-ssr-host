@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { NavigateLink } from '@internal/navigation';
+import { NavigateLink } from '@react-internal/navigation';
 import { Navigation } from './Navigation';
-import { useScopedStyles } from '@internal/mfe-runtime';
-import { useCdnBase, useRemoteLoader } from '@internal/mfe-runtime';
-import { cdnUrl } from '@internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
+import { useCdnBase, useRemoteLoader } from '@react-internal/mfe-runtime';
+import { cdnUrl } from '@react-internal/mfe-runtime';
 import { headerStyles } from './header-styles';
 
 export function Header() {

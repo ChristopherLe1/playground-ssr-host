@@ -6,8 +6,8 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { NavigateToDirective } from '@internal/navigation';
-import { NavPayload } from '@internal/url';
+import { NavigateToDirective } from '@ng-internal/navigation';
+import { NavPayload } from '@ng-internal/url';
 
 export type ButtonVariant = 'primary' | 'secondary';
 export type ButtonSize = 'small' | 'normal';

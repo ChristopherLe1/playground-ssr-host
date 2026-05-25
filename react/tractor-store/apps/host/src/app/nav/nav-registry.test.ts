@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { NavContribution } from '@internal/navigation';
+import type { NavContribution } from '@react-internal/navigation';
 import { NavRegistry } from './nav-registry';
 import {
   decideContribution,
@@ -82,12 +82,12 @@ describe('NavRegistry', () => {
         source: '@x/explore',
         basePath: 'explore',
         intents: [
-          { id: 'explore.home', path: '/', element: 'mfe-home' },
-          { id: 'explore.products', path: '/products', element: 'mfe-list' },
+          { id: 'home', path: '/', element: 'mfe-home' },
+          { id: 'products', path: '/products', element: 'mfe-list' },
         ],
         navBar: [
-          { intentId: 'explore.products', label: 'Products', order: 2 },
-          { intentId: 'explore.home', label: 'Home', order: 1 },
+          { intentId: 'products', label: 'Products', order: 2 },
+          { intentId: 'home', label: 'Home', order: 1 },
         ],
       };
       registry.register(contribution);
@@ -117,10 +117,10 @@ describe('NavRegistry', () => {
       registry.register({
         source: '@x/explore',
         basePath: 'explore',
-        intents: [{ id: 'explore.home', path: '/', element: 'mfe-home' }],
+        intents: [{ id: 'home', path: '/', element: 'mfe-home' }],
         navBar: [
-          { intentId: 'explore.home', label: 'Home' },
-          { intentId: 'explore.missing', label: 'Missing' },
+          { intentId: 'home', label: 'Home' },
+          { intentId: 'missing', label: 'Missing' },
         ],
       });
 

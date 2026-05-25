@@ -8,8 +8,8 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { storeSelected } from '@internal/event-bus';
-import { ButtonComponent } from '@internal/ui';
+import { storeSelected } from '@ng-internal/event-bus';
+import { ButtonComponent } from '@ng-internal/ui';
 import type { StoreModel } from '../../core/data/contracts/models/store.model';
 import { StoreHttp } from '../../core/data/http/store-http';
 import { ResourceService } from '../../shared/utils/resource.service';

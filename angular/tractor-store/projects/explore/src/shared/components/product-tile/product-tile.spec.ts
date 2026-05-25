@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { NavigateToDirective } from '@internal/navigation';
+import { NavigateToDirective } from '@ng-internal/navigation';
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { ProductModel } from '../../../core/data/contracts/models/product.model';
 import { ENV } from '../../../env.config';

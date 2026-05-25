@@ -1,4 +1,4 @@
-import { toCdnUrl } from '@internal/federation';
+import { toCdnUrl } from '@react-internal/federation';
 
 export const cdnUrl = (path: string, base: string): string =>
   toCdnUrl(path, base);

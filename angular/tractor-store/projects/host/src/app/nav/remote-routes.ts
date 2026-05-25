@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { RemoteRouteContribution } from './load-contributions';
-import { toRoutePath } from '@internal/url';
+import { toRoutePath } from '@ng-internal/url';
 
 const loadRemoteShell = () =>
   import('../loader/remote-shell.component').then(

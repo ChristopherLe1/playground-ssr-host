@@ -1,5 +1,5 @@
 {
-  "name": "@internal/mfe-runtime",
+  "name": "@react-internal/mfe-runtime",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,9 +9,9 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@internal/federation": "workspace:*",
-    "@internal/ui": "workspace:*",
-    "@internal/url": "workspace:*"
+    "@react-internal/federation": "workspace:*",
+    "@react-internal/ui": "workspace:*",
+    "@react-internal/url": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.3.1",

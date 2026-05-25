@@ -3,7 +3,7 @@ import {
   FederationManifest,
   NativeFederationResult,
 } from '@softarc/native-federation-orchestrator';
-import { navIntents, navigateTo, NavigatePayload } from '@internal/event-bus';
+import { navIntents, navigateTo, NavigatePayload } from '@ng-internal/event-bus';
 import { loadContributions } from './load-contributions';
 import { NavRegistry } from './nav-registry';
 import { buildRemoteRoutes } from './remote-routes';

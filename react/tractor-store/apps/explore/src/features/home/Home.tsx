@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { NavigateLink } from '@internal/navigation';
+import { NavigateLink } from '@react-internal/navigation';
 import { getTeasers } from '../../api/teasers';
 import { HOME_SEED_SKUS } from '../../api/recommendations';
-import { useAsync } from '@internal/mfe-runtime';
-import { useCdnBase, useRemoteLoader } from '@internal/mfe-runtime';
-import { imgSrc, imgSrcset } from '@internal/mfe-runtime';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { useAsync } from '@react-internal/mfe-runtime';
+import { useCdnBase, useRemoteLoader } from '@react-internal/mfe-runtime';
+import { imgSrc, imgSrcset } from '@react-internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { homeStyles } from './home-styles';
 
 export function Home() {

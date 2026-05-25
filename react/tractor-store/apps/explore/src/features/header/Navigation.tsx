@@ -1,5 +1,5 @@
-import { NavigateLink } from '@internal/navigation';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { NavigateLink } from '@react-internal/navigation';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { navigationStyles } from './navigation-styles';
 
 export function Navigation() {

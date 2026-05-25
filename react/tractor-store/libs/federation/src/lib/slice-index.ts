@@ -3,8 +3,8 @@
  * loaded each remote's nav-contribution; consumed by `LoadRemoteSlice.prefetchElement`
  * so callers can pre-warm a slice by element tag without naming the remote.
  *
- * Lives on a global (mirrors `__NF_REGISTRY__`, `__NF_NAV_RESOLVER__`) so it
- * is reachable from non-React code and survives federation's per-remote
+ * Lives on a global (mirrors `__NF_REGISTRY__`) so it is reachable from
+ * non-React code and survives federation's per-remote
  * module duplication. In standalone-fragment mode the global is unset and
  * `findRemoteForElement` returns undefined — `prefetchElement` is a no-op.
  */

@@ -1,8 +1,8 @@
-import { NavigateLink } from '@internal/navigation';
+import { NavigateLink } from '@react-internal/navigation';
 import type { Recommendation } from '../../api/recommendations';
-import { useScopedStyles } from '@internal/mfe-runtime';
-import { useCdnBase } from '@internal/mfe-runtime';
-import { imgSrc, imgSrcset } from '@internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
+import { useCdnBase } from '@react-internal/mfe-runtime';
+import { imgSrc, imgSrcset } from '@react-internal/mfe-runtime';
 import { recommendationTileStyles } from './recommendation-tile-styles';
 
 export function RecommendationTile({ item }: { item: Recommendation }) {

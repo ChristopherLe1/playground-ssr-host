@@ -1,10 +1,10 @@
 import { useState, type FormEvent } from 'react';
-import { NavigateLink } from '@internal/navigation';
-import { Button } from '@internal/ui';
+import { NavigateLink } from '@react-internal/navigation';
+import { Button } from '@react-internal/ui';
 import { getVariantBySku } from '../../api/variants';
-import { useAsync } from '@internal/mfe-runtime';
+import { useAsync } from '@react-internal/mfe-runtime';
 import { useCart } from '../../cart/use-cart';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { addToCartStyles } from './add-to-cart-styles';
 
 // The MFE element may connect before the host assigns the `sku` attribute,

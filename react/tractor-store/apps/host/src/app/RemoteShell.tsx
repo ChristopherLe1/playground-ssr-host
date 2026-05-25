@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { type RouteParams, sameRouteParams } from '@internal/url';
-import { ErrorBoundary, Spinner } from '@internal/ui';
+import { type RouteParams, sameRouteParams } from '@react-internal/url';
+import { ErrorBoundary, Spinner } from '@react-internal/ui';
 import { useLoader } from './context';
 
 interface RemoteElement extends HTMLElement {

@@ -11,8 +11,8 @@ import {
   NavIntentMap,
   navIntents,
   navigateTo as navigateChannel,
-} from '@internal/event-bus';
-import { joinPath, resolveTemplate, type NavPayload } from '@internal/url';
+} from '@ng-internal/event-bus';
+import { joinPath, resolveTemplate, type NavPayload } from '@ng-internal/url';
 
 const EMPTY_PAYLOAD: NavPayload = Object.freeze({});
 const EMPTY_MAP: NavIntentMap = new Map();

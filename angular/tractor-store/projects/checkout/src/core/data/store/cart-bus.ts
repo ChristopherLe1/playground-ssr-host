@@ -1,4 +1,4 @@
-import { defineChannel } from '@internal/event-bus';
+import { defineChannel } from '@ng-internal/event-bus';
 import type { CartLineItemModel } from '../contracts/models/cart-line-item.model';
 
 export const CART_STORAGE_KEY = 'c_cart';

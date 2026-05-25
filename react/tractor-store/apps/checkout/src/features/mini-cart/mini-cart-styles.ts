@@ -32,4 +32,25 @@ export const miniCartStyles = `
   --minicart-translate: -2px;
   transform: translateY(var(--minicart-translate));
 }
+
+.c_MiniCart--highlight .c_MiniCart__button svg {
+  animation: bounce 0.2s ease-out;
+}
+
+.c_MiniCart--highlight .c_MiniCart__button svg g {
+  transform-origin: center 7px;
+  animation: shake 0.2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(calc(var(--minicart-translate) + 0px)); }
+  33% { transform: translateY(calc(var(--minicart-translate) + 6px)); }
+  100% { transform: translateY(calc(var(--minicart-translate) + 0px)); }
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(6deg); }
+  100% { transform: rotate(-6deg); }
+}
 `;

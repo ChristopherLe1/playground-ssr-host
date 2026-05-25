@@ -1,7 +1,15 @@
-import { withNativeFederation, shareAll } from '@softarc/native-federation/config';
+import { withNativeFederation, shareAll, DEFAULT_SKIP_LIST } from '@softarc/native-federation/config';
+
+const workspaceLibs = [
+  '@react-internal/event-bus',
+  '@react-internal/navigation',
+  '@react-internal/ui',
+  '@react-internal/url',
+];
 
 export default withNativeFederation({
   name: 'host',
+  sharedMappings: workspaceLibs,
 
   shared: {
     ...shareAll(
@@ -11,6 +19,10 @@ export default withNativeFederation({
         requiredVersion: 'auto',
       },
       {
+        // Route workspace libs through sharedMappings (TS-aware bundling)
+        // instead of the npm-package shared path, which only resolves
+        // .mjs/.js/.cjs and chokes on the libs' TS source.
+        skipList: [...DEFAULT_SKIP_LIST, ...workspaceLibs],
         overrides: {
           react: {
             singleton: true,
@@ -38,13 +50,7 @@ export default withNativeFederation({
     'react-dom/server.node',
     'react-dom/server.browser',
     'react-dom/test-utils',
-    // Workspace libs ship TS source — inline them into the consuming app
-    // instead of federation-bundling them as npm packages. Cross-MFE state
-    // still flows through window.__NF_REGISTRY__ keyed by channel name.
-    '@internal/event-bus',
-    '@internal/federation',
-    '@internal/navigation',
-    '@internal/ui',
-    '@internal/url',
+    // Host-only internal — inline rather than federate.
+    '@react-internal/federation',
   ],
 });

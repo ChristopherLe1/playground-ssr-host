@@ -1,4 +1,4 @@
-import type { NavTarget } from '@internal/navigation';
+import type { NavTarget } from '@react-internal/navigation';
 import { categoryCatalog } from './categories-fixtures';
 
 export interface Product {

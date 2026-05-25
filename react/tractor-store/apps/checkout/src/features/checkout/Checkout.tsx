@@ -1,9 +1,9 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { navigateTo, storeSelected } from '@internal/event-bus';
-import { Button } from '@internal/ui';
+import { navigateTo, storeSelected } from '@react-internal/event-bus';
+import { Button } from '@react-internal/ui';
 import { useCart } from '../../cart/use-cart';
-import { useRemoteLoader } from '@internal/mfe-runtime';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { useRemoteLoader } from '@react-internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { CompactHeader } from './CompactHeader';
 import { checkoutStyles } from './checkout-styles';
 

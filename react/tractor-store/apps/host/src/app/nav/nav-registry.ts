@@ -1,11 +1,12 @@
-import type { NavContribution } from '@internal/navigation';
+import type { NavContribution } from '@react-internal/navigation';
+import type { NavIntentEntry, NavIntentMap } from '@react-internal/event-bus';
 import {
   type NavPayload,
   appendQueryString,
   joinPath,
   resolveTemplate,
   splitIntentParams,
-} from '@internal/url';
+} from '@react-internal/url';
 
 export interface NavBarEntry {
   readonly source: string;
@@ -15,29 +16,27 @@ export interface NavBarEntry {
   readonly order: number;
 }
 
-interface ResolvedIntent {
-  readonly basePath: string;
-  readonly path: string;
-}
-
 export type NavNavigator = (url: string) => Promise<unknown>;
 
 /**
  * Holds nav contributions from one or more MFEs and turns abstract intents
- * (e.g. `'cart.overview'` + `{ uuid }`) into concrete URLs. Navigation itself
- * is delegated to an injected `NavNavigator` so the registry stays free of
- * any router dependency and can be unit-tested.
+ * (e.g. `'checkout.cart'` + `{ uuid }`) into concrete URLs. The lookup key is
+ * `${basePath}.${intent.id}`, so contributions declare bare intent ids and the
+ * registry produces the namespaced form callers use (`checkout.cart`).
+ * Navigation itself is delegated to an injected `NavNavigator` so the
+ * registry stays free of any router dependency and can be unit-tested.
  */
 export class NavRegistry {
   private readonly contributions = new Map<string, NavContribution>();
-  private readonly intents = new Map<string, ResolvedIntent>();
+  private readonly intents = new Map<string, NavIntentEntry>();
 
   constructor(private readonly navigator: NavNavigator) {}
 
   register(contribution: NavContribution): void {
     this.contributions.set(contribution.source, contribution);
     for (const intent of contribution.intents) {
-      this.intents.set(intent.id, {
+      const key = `${contribution.basePath}.${intent.id}`;
+      this.intents.set(key, {
         basePath: contribution.basePath,
         path: intent.path,
       });
@@ -63,6 +62,10 @@ export class NavRegistry {
     return true;
   }
 
+  getIntents(): NavIntentMap {
+    return new Map(this.intents);
+  }
+
   getNavBar(): readonly NavBarEntry[] {
     const entries: NavBarEntry[] = [];
     for (const contribution of this.contributions.values()) {
@@ -73,7 +76,7 @@ export class NavRegistry {
         if (!intent) continue;
         entries.push({
           source: contribution.source,
-          intentId: entry.intentId,
+          intentId: `${contribution.basePath}.${entry.intentId}`,
           label: entry.label,
           path: joinPath(contribution.basePath, intent.path),
           order: entry.order ?? Number.MAX_SAFE_INTEGER,

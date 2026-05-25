@@ -1,5 +1,5 @@
 {
-  "name": "@internal/url",
+  "name": "@react-internal/url",
   "version": "0.0.0",
   "private": true,
   "type": "module",

@@ -9,12 +9,12 @@
     "preview": "node build.mjs --preview"
   },
   "dependencies": {
-    "@internal/event-bus": "workspace:*",
-    "@internal/federation": "workspace:*",
-    "@internal/mfe-runtime": "workspace:*",
-    "@internal/navigation": "workspace:*",
-    "@internal/ui": "workspace:*",
-    "@internal/url": "workspace:*",
+    "@react-internal/event-bus": "workspace:*",
+    "@react-internal/federation": "workspace:*",
+    "@react-internal/mfe-runtime": "workspace:*",
+    "@react-internal/navigation": "workspace:*",
+    "@react-internal/ui": "workspace:*",
+    "@react-internal/url": "workspace:*",
     "@softarc/native-federation-orchestrator": "^4.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

@@ -9,7 +9,7 @@ import {
   type EnvironmentConfig,
   createSliceLoader,
   toCdnUrl,
-} from '@internal/federation';
+} from '@react-internal/federation';
 import { AppProvider } from './context';
 import { setupShellNavigation } from './nav/setup-shell-nav';
 
@@ -42,15 +42,15 @@ const loadGlobalStylesheet = (cdnUrl: string): void => {
 };
 
 export const bootstrap = async (
-  nf: NativeFederationResult,
   env: EnvironmentConfig,
+  nf: NativeFederationResult,
   manifest: FederationManifest,
 ): Promise<void> => {
   loadGlobalStylesheet(env.cdnUrl);
   loadRalewayFont(env.cdnUrl);
   loadHelperScript(env.cdnUrl);
 
-  const loadRemoteSlice = createSliceLoader(nf, env, manifest);
+  const loadRemoteSlice = createSliceLoader(env, nf, manifest);
   const { router } = await setupShellNavigation({ nf, manifest });
 
   const container = document.getElementById('root');

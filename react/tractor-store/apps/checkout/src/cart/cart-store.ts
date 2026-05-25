@@ -2,7 +2,7 @@ import {
   type CartLineItem,
   emitCartUpdated,
   onCartUpdated,
-} from '@internal/event-bus';
+} from '@react-internal/event-bus';
 
 export type { CartLineItem };
 

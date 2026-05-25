@@ -7,7 +7,7 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { param, RouteParams } from '@internal/url';
+import { param, RouteParams } from '@ng-internal/url';
 import { ProductHttp } from '../../core/data/http/product-http';
 import { VariantOption } from '../../shared/components/variant-option/variant-option';
 import { ResourceService } from '../../shared/utils/resource.service';

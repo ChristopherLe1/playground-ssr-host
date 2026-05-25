@@ -1,4 +1,4 @@
-import type { NavPayload } from '@internal/url';
+import type { NavPayload } from '@ng-internal/url';
 
 /** A request to navigate to an intent — what a `NavigateToDirective` author writes. */
 export interface NavTarget {

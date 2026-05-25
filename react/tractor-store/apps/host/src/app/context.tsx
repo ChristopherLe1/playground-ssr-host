@@ -3,7 +3,7 @@ import type {
   FederationManifest,
   NativeFederationResult,
 } from '@softarc/native-federation-orchestrator';
-import type { EnvironmentConfig, LoadRemoteSlice } from '@internal/federation';
+import type { EnvironmentConfig, LoadRemoteSlice } from '@react-internal/federation';
 
 export interface AppContextValue {
   readonly env: EnvironmentConfig;

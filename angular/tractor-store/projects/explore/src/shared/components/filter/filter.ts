@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
   input,
 } from '@angular/core';
-import { NavigateToDirective, NavTarget } from '@internal/navigation';
+import { NavigateToDirective, NavTarget } from '@ng-internal/navigation';
 
 export interface FilterItem {
   link: NavTarget;

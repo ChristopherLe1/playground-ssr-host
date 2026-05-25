@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
-import { NavigateLink } from '@internal/navigation';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { NavigateLink } from '@react-internal/navigation';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { variantOptionStyles } from './variant-option-styles';
 
 interface Props {

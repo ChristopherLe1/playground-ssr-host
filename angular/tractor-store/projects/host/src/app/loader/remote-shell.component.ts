@@ -12,8 +12,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Subscription } from 'rxjs';
 import { LOAD_REMOTE_SLICE } from '../env.config';
-import { RouteParams, sameRouteParams } from '@internal/url';
-import { SpinnerComponent } from '@internal/ui';
+import { RouteParams, sameRouteParams } from '@ng-internal/url';
+import { SpinnerComponent } from '@ng-internal/ui';
 
 interface SliceRouteData {
   readonly remoteName: string;

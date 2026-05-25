@@ -5,22 +5,22 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "paths": {
-      "@internal/event-bus": [
+      "@ng-internal/event-bus": [
         "./libs/event-bus/src/public-api.ts"
       ],
-      "@internal/federation": [
+      "@ng-internal/federation": [
         "./libs/federation/src/public-api.ts"
       ],
-      "@internal/logging": [
+      "@ng-internal/logging": [
         "./libs/logging/src/public-api.ts"
       ],
-      "@internal/navigation": [
+      "@ng-internal/navigation": [
         "./libs/navigation/src/public-api.ts"
       ],
-      "@internal/ui": [
+      "@ng-internal/ui": [
         "./libs/ui/src/public-api.ts"
       ],
-      "@internal/url": [
+      "@ng-internal/url": [
         "./libs/url/src/public-api.ts"
       ]
     },

@@ -1,5 +1,5 @@
-import { NavigateLink, type NavTarget } from '@internal/navigation';
-import { useScopedStyles } from '@internal/mfe-runtime';
+import { NavigateLink, type NavTarget } from '@react-internal/navigation';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
 import { filterStyles } from './filter-styles';
 
 export interface FilterItem {

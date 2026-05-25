@@ -1,4 +1,4 @@
-import { createSliceLoader } from '@internal/federation';
+import { createSliceLoader } from '@ng-internal/federation';
 import {
   initFederation,
   NativeFederationResult,

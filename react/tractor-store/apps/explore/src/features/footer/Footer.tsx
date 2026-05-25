@@ -1,6 +1,6 @@
-import { useScopedStyles } from '@internal/mfe-runtime';
-import { useCdnBase } from '@internal/mfe-runtime';
-import { cdnUrl } from '@internal/mfe-runtime';
+import { useScopedStyles } from '@react-internal/mfe-runtime';
+import { useCdnBase } from '@react-internal/mfe-runtime';
+import { cdnUrl } from '@react-internal/mfe-runtime';
 import { footerStyles } from './footer-styles';
 
 export function Footer() {

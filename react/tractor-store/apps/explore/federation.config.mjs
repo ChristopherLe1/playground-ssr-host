@@ -1,4 +1,12 @@
-import { withNativeFederation, shareAll } from '@softarc/native-federation/config';
+import { withNativeFederation, shareAll, DEFAULT_SKIP_LIST } from '@softarc/native-federation/config';
+
+const workspaceLibs = [
+  '@react-internal/event-bus',
+  '@react-internal/mfe-runtime',
+  '@react-internal/navigation',
+  '@react-internal/ui',
+  '@react-internal/url',
+];
 
 export default withNativeFederation({
   name: '@tractor-store/explore',
@@ -14,6 +22,8 @@ export default withNativeFederation({
     'nav-contribution': './src/core/nav-contribution.ts',
   },
 
+  sharedMappings: workspaceLibs,
+
   shared: {
     ...shareAll(
       {
@@ -22,6 +32,7 @@ export default withNativeFederation({
         requiredVersion: 'auto',
       },
       {
+        skipList: [...DEFAULT_SKIP_LIST, ...workspaceLibs],
         overrides: {
           react: {
             singleton: true,
@@ -49,13 +60,6 @@ export default withNativeFederation({
     'react-dom/server.node',
     'react-dom/server.browser',
     'react-dom/test-utils',
-    // Workspace libs ship TS source — inline them into the consuming app
-    // instead of federation-bundling them as npm packages.
-    '@internal/event-bus',
-    '@internal/federation',
-    '@internal/mfe-runtime',
-    '@internal/navigation',
-    '@internal/ui',
-    '@internal/url',
+    '@react-internal/federation',
   ],
 });
