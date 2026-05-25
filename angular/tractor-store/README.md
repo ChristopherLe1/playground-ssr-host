@@ -5,7 +5,7 @@ built with Angular 21 (zoneless), [Native Federation v4][nf-v4], and Web
 Components. It follows the [Tractor Store Blueprint][blueprint] so it can
 be compared head-to-head with implementations in other frameworks.
 
-**Live demo:** [native-federation.github.io/angular-examples](https://native-federation.github.io/angular-examples/)
+**Live demo:** [native-federation.github.io/playground](https://native-federation.github.io/playground/)
 
 [tractor-store]: https://micro-frontends.org/tractor-store/
 [nf-v4]: https://www.npmjs.com/package/@angular-architects/native-federation-v4
@@ -94,8 +94,8 @@ inside route-based shell components.
 The workspace uses pnpm. Clone, install, and start everything:
 
 ```bash
-git clone git@github.com:native-federation/angular-examples.git
-cd angular-examples/tractor-store
+git clone git@github.com:native-federation/playground.git
+cd playground/angular/tractor-store
 pnpm install
 pnpm start:all
 ```
@@ -135,8 +135,8 @@ pnpm ng test host --watch=false
 ## Deployment
 
 The app is published to GitHub Pages by
-[`.github/workflows/deploy-tractor-store.yml`](../.github/workflows/deploy-tractor-store.yml)
-on every push to `main` that touches `tractor-store/**`. The workflow:
+[`.github/workflows/deploy-tractor-store.yml`](../../.github/workflows/deploy-tractor-store.yml)
+on every push to `main` that touches `angular/tractor-store/**`. The workflow:
 
 1. Builds the four apps with the appropriate `--base-href`.
 2. Assembles a single `_site/` directory with `host` at the root and the
