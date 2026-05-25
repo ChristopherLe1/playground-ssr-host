@@ -27,8 +27,8 @@ boundary in place:
   `defineChannel<Payload>('channel:name')`.
 - **Intent-based navigation.** A button in *decide* that should open the
   cart never types `'/checkout/cart'`. It emits the intent
-  `'checkout.cart'` via the `[navigateTo]` directive; the host owns the
-  URL.
+  `'checkout.cart'` via the `[appNavigateTo]` directive; the host owns
+  the URL.
 
 Each idea is documented in detail under [`docs/`](./docs/) — start there
 if you want the why and how.
@@ -38,8 +38,8 @@ if you want the why and how.
 | Document                                       | What's in it                                                                                                       |
 | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | [docs/README.md](./docs/README.md)             | Overview, mental model, and a "where does X live" index. **Start here.**                                           |
-| [docs/architecture.md](./docs/architecture.md) | The host/remote contract and the three decoupling mechanisms (custom elements, the event bus, shared libraries).   |
-| [docs/navigation.md](./docs/navigation.md)     | The intent-based navigation system — how `[navigateTo]` + a host-owned registry replace cross-MFE URL hard-coding. |
+| [docs/architecture.md](./docs/architecture.md) | The host/remote contract, the three decoupling mechanisms (custom elements, event bus, intent navigation), and the shared-libraries policy. |
+| [docs/navigation.md](./docs/navigation.md)     | The intent-based navigation system — how `[appNavigateTo]` + a host-owned registry replace cross-MFE URL hard-coding. |
 | [docs/features.md](./docs/features.md)         | Catalogue of what each team ships, the events they speak, and the cross-remote dependencies between them.          |
 
 ## Technologies at a glance
@@ -54,7 +54,7 @@ if you want the why and how.
 | 📣 Communication            | Typed event channels on `window.__NF_REGISTRY__`        |
 | 🗺️ Navigation               | SPA inside host, intent IDs across remotes              |
 | 🎨 Styling                  | Self-contained SCSS (one bundle per remote)             |
-| 🍱 Design system            | Shared UI library (`@internal/ui`)                      |
+| 🍱 Design system            | Shared UI library (`@ng-internal/ui`)                   |
 | 🔮 Discovery                | Runtime manifest (`federation.manifest.json`)           |
 | 🚚 Deployment               | Static (GitHub Pages, GitHub Actions)                   |
 | 👩‍💻 Local development        | [angular-cli], [concurrently], [http-server]            |
@@ -67,7 +67,7 @@ if you want the why and how.
 
 ## Project structure
 
-The workspace contains four Angular applications and four libraries:
+The workspace contains four Angular applications and six libraries:
 
 ```
 tractor-store/
@@ -77,10 +77,12 @@ tractor-store/
 │   ├── decide/       # Product detail page
 │   └── checkout/     # Cart, checkout flow, mini-cart, add-to-cart
 ├── libs/
-│   ├── events/       # @internal/events     — event channels, NavigateToDirective, intent types, path/route helpers
-│   ├── federation/   # @internal/federation — env config, CDN helper, slice loader factory
-│   ├── logging/      # @internal/logging    — console logger service
-│   └── ui/           # @internal/ui         — buttons, spinner
+│   ├── event-bus/    # @ng-internal/event-bus  — defineChannel factory, nav/store channels
+│   ├── navigation/   # @ng-internal/navigation — NavigateToDirective, NavContribution types
+│   ├── url/          # @ng-internal/url        — RouteParams, path-template, query helpers
+│   ├── federation/   # @ng-internal/federation — env config, CDN helper, slice loader factory
+│   ├── logging/      # @ng-internal/logging    — console logger service
+│   └── ui/           # @ng-internal/ui         — buttons, spinner
 └── public/cdn/       # Static fonts and images (served at :3000 in dev)
 ```
 
@@ -159,7 +161,6 @@ Open follow-ups:
 - [ ] Web performance optimisations (preload critical remotes, deeper code splitting).
 - [ ] Error boundaries / fallback UI when a remote fails to load.
 - [ ] Wire a real backend instead of static fixtures.
-- [ ] Revisit `[navigateTo]` accessibility — anchors currently rely on a click handler instead of a real `href`, so middle-click and copy-link do not yet work.
 
 ## About the authors
 

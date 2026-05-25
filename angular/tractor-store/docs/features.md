@@ -1,9 +1,9 @@
 # Features
 
 A catalogue of what each team ships, the fragments they expose, the
-events they speak, and the cross-remote dependencies between them. Use
-this document as a map when you need to find where something lives or
-what would break if you renamed an `mfe-*` tag.
+events they speak, and the cross-remote dependencies between them.
+Use this document as a map when you need to find where something
+lives or what would break if you renamed an `mfe-*` tag.
 
 ## Teams at a glance
 
@@ -17,13 +17,22 @@ The host runs on port 4200 and owns the URL. Colours are used by the
 boundary-overlay debugging script described in
 [architecture.md](./architecture.md#team-boundary-visualisation).
 
+The team names come from the [Tractor Store Blueprint][blueprint] and
+are deliberately *verbs from the customer journey*, not technical
+layers. Explore helps the user browse, Decide helps them choose a
+product, Checkout takes them through the purchase. That vertical
+split — feature, not framework layer — is the textbook MFE team
+decomposition.
+
+[blueprint]: https://github.com/neuland/tractor-store-blueprint
+
 ---
 
 ## Explore — catalog & chrome
 
-Explore is the largest remote: it owns the catalog *and* the page chrome
-(header, footer) that every other remote pulls in. It also ships the
-"recommendations" carousel and the in-store-picker UI.
+Explore is the largest remote: it owns the catalog *and* the page
+chrome (header, footer) that every other remote pulls in. It also
+ships the "recommendations" carousel and the in-store-picker UI.
 
 **Source:** `projects/explore/`
 
@@ -41,7 +50,11 @@ Explore is the largest remote: it owns the catalog *and* the page chrome
 
 ### Routed intents
 
-| Intent ID                     | Path                          | Renders          |
+The remote's `nav-contribution.ts` declares intent IDs *relative* to
+the remote; the host prepends `basePath` ("explore") to form the
+public IDs.
+
+| Public intent ID              | Path                          | Renders          |
 | ----------------------------- | ----------------------------- | ---------------- |
 | `explore.home`                | `/explore/`                   | `mfe-home`       |
 | `explore.products`            | `/explore/products`           | `mfe-category`   |
@@ -51,19 +64,21 @@ Explore is the largest remote: it owns the catalog *and* the page chrome
 ### Cross-remote fragments it loads
 
 - `mfe-mini-cart` from `@tractor-store/checkout`
-  (`projects/explore/src/features/header/header.component.ts`) — the
-  header reserves a slot for the mini-cart shipped by checkout.
+  (`projects/explore/src/features/header/header.component.ts:28`) —
+  the header reserves a slot for the mini-cart shipped by checkout.
 
 That is the only cross-team dependency explore consumes; everything
-else under `mfe-header` / `mfe-footer` / `mfe-recommendations` is its
-own.
+else under `mfe-header`, `mfe-footer`, and `mfe-recommendations` is
+its own.
 
 ### Events it emits
 
 - `store:selected` — when the user picks a pickup store inside
-  `mfe-store-picker`. Defined as a typed channel in
-  `libs/events/src/lib/store-event-bus.ts` and consumed by `mfe-checkout`
-  to pre-fill the order's store field.
+  `mfe-store-picker`
+  (`projects/explore/src/features/store-picker/store-picker.component.ts:61`).
+  Defined as a typed channel in
+  `libs/event-bus/src/lib/store-event-bus.ts` and consumed by
+  `mfe-checkout` to pre-fill the order's store field.
 
 ---
 
@@ -82,9 +97,9 @@ surface area and the most cross-remote integration.
 
 ### Routed intents
 
-| Intent ID         | Path                       | Renders        |
-| ----------------- | -------------------------- | -------------- |
-| `decide.product`  | `/decide/product/:id`      | `mfe-product`  |
+| Public intent ID   | Path                       | Renders        |
+| ------------------ | -------------------------- | -------------- |
+| `decide.product`   | `/decide/product/:id`      | `mfe-product`  |
 
 The page reads `id` from the path and an optional `sku` query parameter
 from `routeParams`, e.g. `/decide/product/123?sku=BLUE-XL`.
@@ -127,7 +142,7 @@ add-to-cart widgets that other teams embed.
 
 ### Routed intents
 
-| Intent ID             | Path                  | Renders         |
+| Public intent ID      | Path                  | Renders         |
 | --------------------- | --------------------- | --------------- |
 | `checkout.cart`       | `/checkout/cart`      | `mfe-cart`      |
 | `checkout.checkout`   | `/checkout/checkout`  | `mfe-checkout`  |
@@ -147,20 +162,21 @@ but load no foreign fragments themselves.
 
 ### Events it speaks
 
-- **Listens to** `store:selected` from explore (`features/checkout/checkout.page.ts`)
-  via `storeSelected.on(({ id }) => …)` — pre-fills the order's store
-  field when the user picks a store.
+- **Listens to** `store:selected` from explore — pre-fills the order's
+  store field when the user picks a store
+  (`projects/checkout/src/features/checkout/checkout.page.ts`).
 - **Emits** `nav:navigate` after a successful submission, with intent
   `'checkout.thanks'`, to ask the host to route to the confirmation
-  page. This is the same channel that powers `[navigateTo]`; the page
-  just uses it directly from TypeScript.
+  page. This is the same channel that powers `[appNavigateTo]`; the
+  page just uses it directly from TypeScript.
 - **Internal `cart:updated`** (`core/data/store/cart-bus.ts`) — keeps
   every `CartStore` instance in step. Because each loaded checkout
   slice has its own injector, a user adding an item via
   `<mfe-add-to-cart>` (mounted inside decide's product page) and the
   `<mfe-mini-cart>` (mounted inside explore's header) would otherwise
   see different counts. The bus syncs them without either side
-  importing the other.
+  importing the other. It also re-emits browser `storage` events so
+  a second tab stays in sync.
 
 ---
 
@@ -179,9 +195,9 @@ A condensed view of who pulls what from whom:
 
 Two heuristics fall out of the table:
 
-- **Explore is the chrome layer.** Every other remote's full-page views
-  pull in `mfe-header` + `mfe-footer` from explore, so the chrome stays
-  consistent without being duplicated three times.
+- **Explore is the chrome layer.** Every other remote's full-page
+  views pull in `mfe-header` + `mfe-footer` from explore, so the
+  chrome stays consistent without being duplicated three times.
 - **Checkout exposes interaction primitives.** `mfe-mini-cart` and
   `mfe-add-to-cart` are not full pages — they are small interactive
   widgets that other teams drop into their own templates wherever the
@@ -191,37 +207,41 @@ Two heuristics fall out of the table:
 
 Every channel that travels on `window.__NF_REGISTRY__`:
 
-| Channel          | Defined in                                            | Emitter                                | Subscriber                              |
-| ---------------- | ----------------------------------------------------- | -------------------------------------- | --------------------------------------- |
-| `nav:navigate`   | `libs/events/src/lib/nav-event-bus.ts`                | `[navigateTo]` + direct emitters       | host (`setupShellNavigation`)           |
-| `store:selected` | `libs/events/src/lib/store-event-bus.ts`              | explore (`mfe-store-picker`)           | checkout (`mfe-checkout`)               |
-| `cart:updated`   | `projects/checkout/src/core/data/store/cart-bus.ts`   | checkout (`CartStore`)                 | checkout (`CartStore`)                  |
+| Channel          | Defined in                                                       | Emitter                                | Subscriber                              |
+| ---------------- | ---------------------------------------------------------------- | -------------------------------------- | --------------------------------------- |
+| `nav:navigate`   | `libs/event-bus/src/lib/nav-event-bus.ts`                        | `[appNavigateTo]` + direct emitters    | host (`setupShellNavigation`)           |
+| `nav:intents`    | `libs/event-bus/src/lib/nav-event-bus.ts`                        | host (after registering contributions) | `NavigateToDirective` in every remote   |
+| `store:selected` | `libs/event-bus/src/lib/store-event-bus.ts`                      | explore (`mfe-store-picker`)           | checkout (`mfe-checkout`)               |
+| `cart:updated`   | `projects/checkout/src/core/data/store/cart-bus.ts`              | checkout (`CartStore`)                 | checkout (`CartStore`)                  |
 
-`nav:navigate` and `store:selected` use the shared `@internal/events`
-library, so all participants import the same `defineChannel<…>(name)`
-handle — one channel name, one payload type, both ends in sync.
-`cart:updated` is internal to checkout: it lives next to the `CartStore`
-because no other team has a reason to care about the format, so it
-talks to the bus directly rather than through the shared library.
+All four use the same `defineChannel` factory from
+`@ng-internal/event-bus`, so the emitter and subscriber import the
+same typed handle — one channel name, one payload type, both ends in
+sync. `cart:updated` is internal to checkout (only checkout subscribes)
+but uses the same factory so joining the bus is free.
 
 ## Shared libraries
 
-Four TypeScript libraries live under `libs/`:
+Six TypeScript libraries live under `libs/`. Each has a single
+responsibility; none contain business code.
 
-| Package               | Path                | What it provides                                                                                                                                  |
-| --------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@internal/events`    | `libs/events/`      | `defineChannel` factory, `navigateTo` and `storeSelected` channels, `NavigateToDirective`, `NavContribution` types, `RouteParams`/path/query helpers |
-| `@internal/ui`        | `libs/ui/`          | Shared design-system components (`Button`, `Spinner`)                                                                                             |
-| `@internal/logging`   | `libs/logging/`     | `ConsoleLoggerService` for consistent log formatting                                                                                              |
-| `@internal/federation`| `libs/federation/`  | `EnvironmentConfig`, `toCdnUrl`, `createSliceLoader` factory                                                                                      |
+| Package                  | Path                | What it provides                                                                                                                                  |
+| ------------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@ng-internal/event-bus` | `libs/event-bus/`   | `defineChannel` factory, channel declarations (`navigateTo`, `navIntents`, `storeSelected`) and their payload types                               |
+| `@ng-internal/navigation`| `libs/navigation/`  | `NavigateToDirective`, `NavContribution`/`NavIntent`/`NavTarget`/`NavBarContribution` types                                                       |
+| `@ng-internal/url`       | `libs/url/`         | `RouteParams` helpers (`param`, `requiredParam`, `paramList`, `sameRouteParams`), path-template helpers (`joinPath`, `resolveTemplate`, `splitIntentParams`), `appendQueryString`, `NavPayload` type |
+| `@ng-internal/ui`        | `libs/ui/`          | Design-system primitives (`Button`, `Spinner`)                                                                                                    |
+| `@ng-internal/logging`   | `libs/logging/`     | `ConsoleLoggerService` for consistent log formatting                                                                                              |
+| `@ng-internal/federation`| `libs/federation/`  | `EnvironmentConfig`, `LoadRemoteSlice`, `createSliceLoader`, `toCdnUrl`                                                                           |
 
-The first three are listed in each app's `sharedMappings` so the host
+The first five are listed in each app's `sharedMappings` so the host
 and remotes share a single instance — same `NavigateToDirective`, same
 channel handles, same `instanceof` identity.
 
-`@internal/federation` is *not* in `sharedMappings`. It is only used at
-bootstrap inside each remote's `main.ts`, so bundling it locally avoids
-load-order puzzles and keeps the slice loader self-sufficient.
+`@ng-internal/federation` is *not* in `sharedMappings`. It is only
+used at bootstrap inside each remote's `main.ts`, so bundling it
+locally avoids load-order puzzles and keeps the slice loader
+self-sufficient.
 
 ## See also
 
