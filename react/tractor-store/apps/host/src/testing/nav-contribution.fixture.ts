@@ -19,7 +19,7 @@ export const decideContribution: NavContribution = {
   intents: [
     {
       id: 'product',
-      path: '/product/:id',
+      path: '/product/{id}',
       element: 'mfe-decide-product',
     },
   ],

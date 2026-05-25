@@ -42,7 +42,7 @@ export const navContribution: NavContribution = {
   intents: [
     { id: 'home',              path: '/',                    element: 'mfe-home' },
     { id: 'products',          path: '/products',            element: 'mfe-category' },
-    { id: 'products.category', path: '/products/:category',  element: 'mfe-category' },
+    { id: 'products.category', path: '/products/{category}', element: 'mfe-category' },
     { id: 'stores',            path: '/stores',              element: 'mfe-stores' },
   ],
   chromeElements: ['mfe-header', 'mfe-footer', 'mfe-recommendations', 'mfe-store-picker'],
@@ -59,7 +59,7 @@ The shape (`libs/navigation/src/lib/nav-types.ts`):
     prepends `basePath` when it registers each intent, so explore's
     `{ id: 'home' }` becomes the public `explore.home`. Other remotes
     link to the full ID, never to a URL.
-  - `path` — the path *inside* `basePath`, with optional `:param`
+  - `path` — the path *inside* `basePath`, with optional `{param}`
     segments.
   - `element` — the `mfe-*` custom element to render at that path.
 - `chromeElements?` — non-routed custom-element tags this remote
@@ -324,7 +324,7 @@ boundary is the literal `'checkout.cart'`.
 Two kinds of parameters can travel with an intent:
 
 - **Path params** — placeholders in the intent's `path`, e.g.
-  `/product/:id`. The registry fills them in from `params`.
+  `/product/{id}`. The registry fills them in from `params`.
 - **Query params** — anything in `params` that wasn't consumed by a
   placeholder gets appended as a query string.
 
@@ -351,7 +351,7 @@ So a link like
 </NavigateLink>
 ```
 
-with the contribution `{ id: 'product', path: '/product/:id', element: 'mfe-product' }`
+with the contribution `{ id: 'product', path: '/product/{id}', element: 'mfe-product' }`
 resolves to `/decide/product/123?sku=BLUE-XL`. The remote then reads
 `id` and `sku` off `routeParams` on its component.
 

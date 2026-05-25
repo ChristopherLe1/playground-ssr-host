@@ -42,18 +42,24 @@ describe('path-template', () => {
       expect(toRoutePath('', '')).toBe('');
     });
 
-    it('keeps :param placeholders intact', () => {
-      expect(toRoutePath('decide', '/product/:id')).toBe('decide/product/:id');
+    it('converts {name} placeholders to react-router :name syntax', () => {
+      expect(toRoutePath('decide', '/product/{id}')).toBe('decide/product/:id');
+    });
+
+    it('converts multiple placeholders in one path', () => {
+      expect(toRoutePath('', '/{org}/{repo}/issues/{num}')).toBe(
+        ':org/:repo/issues/:num',
+      );
     });
   });
 
   describe('splitIntentParams', () => {
-    it('extracts param names from :param segments', () => {
-      expect(splitIntentParams('/product/:id')).toEqual(['id']);
+    it('extracts param names from {name} segments', () => {
+      expect(splitIntentParams('/product/{id}')).toEqual(['id']);
     });
 
     it('returns multiple param names in order', () => {
-      expect(splitIntentParams('/:org/:repo/issues/:num')).toEqual([
+      expect(splitIntentParams('/{org}/{repo}/issues/{num}')).toEqual([
         'org',
         'repo',
         'num',
@@ -65,19 +71,19 @@ describe('path-template', () => {
     });
 
     it('ignores segments that look like params but include extra chars', () => {
-      expect(splitIntentParams('/:id-suffix')).toEqual([]);
+      expect(splitIntentParams('/{id}-suffix')).toEqual([]);
     });
   });
 
   describe('resolveTemplate', () => {
-    it('substitutes :param segments with payload values', () => {
-      expect(resolveTemplate('/product/:id', { id: 'CL-01' })).toBe(
+    it('substitutes {name} segments with payload values', () => {
+      expect(resolveTemplate('/product/{id}', { id: 'CL-01' })).toBe(
         '/product/CL-01',
       );
     });
 
     it('URL-encodes substituted values', () => {
-      expect(resolveTemplate('/q/:term', { term: 'a b&c' })).toBe(
+      expect(resolveTemplate('/q/{term}', { term: 'a b&c' })).toBe(
         '/q/a%20b%26c',
       );
     });
@@ -87,14 +93,14 @@ describe('path-template', () => {
     });
 
     it('throws a descriptive error when a required param is missing', () => {
-      expect(() => resolveTemplate('/product/:id', {})).toThrow(
-        /missing required param ":id" for path "\/product\/:id"/,
+      expect(() => resolveTemplate('/product/{id}', {})).toThrow(
+        /missing required param "\{id\}" for path "\/product\/\{id\}"/,
       );
     });
 
     it('handles multiple params', () => {
       expect(
-        resolveTemplate('/:org/:repo', { org: 'a', repo: 'b' }),
+        resolveTemplate('/{org}/{repo}', { org: 'a', repo: 'b' }),
       ).toBe('/a/b');
     });
   });

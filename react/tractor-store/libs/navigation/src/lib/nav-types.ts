@@ -21,7 +21,6 @@ export interface NavBarContribution {
 export interface NavContribution {
   readonly source: string;
   readonly basePath: string;
-  readonly element?: string;
   readonly intents: readonly NavIntent[];
   readonly navBar?: readonly NavBarContribution[];
   /**

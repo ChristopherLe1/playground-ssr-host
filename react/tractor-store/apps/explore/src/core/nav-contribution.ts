@@ -8,7 +8,7 @@ export const navContribution: NavContribution = {
     { id: 'products', path: '/products', element: 'mfe-category' },
     {
       id: 'products.category',
-      path: '/products/:category',
+      path: '/products/{category}',
       element: 'mfe-category',
     },
     { id: 'stores', path: '/stores', element: 'mfe-stores' },
