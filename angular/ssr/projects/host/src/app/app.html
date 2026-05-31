@@ -1,0 +1,14 @@
+<header class="app-header">
+  <a class="app-brand" routerLink="/">NF&nbsp;Todo</a>
+  <nav class="app-nav" aria-label="Primary">
+    <a routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+    <a routerLink="/todos" routerLinkActive="is-active">Todos</a>
+    <a routerLink="/insights" routerLinkActive="is-active">Insights</a>
+  </nav>
+</header>
+
+<main class="app-main">
+  <router-outlet />
+</main>
