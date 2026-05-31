@@ -46,6 +46,7 @@ export class TodoDetailComponent {
       return;
     }
     this.store.updateTitle(current.id, this.form.controls.title.value);
+    void this.router.navigate(['..'], { relativeTo: this.route });
   }
 
   protected toggle(): void {
